@@ -4,6 +4,7 @@ import { useUser } from "@clerk/clerk-react";
 import { db } from "../firebase";
 import { doc, getDoc, setDoc } from "firebase/firestore";
 import { v4 as uuidv4 } from "uuid";
+import userProfileService from "../services/userProfileService";
 
 export default function UserHandler() {
   const { isSignedIn, user } = useUser();
@@ -18,27 +19,51 @@ export default function UserHandler() {
       if (!email || !clerkId) return;
 
       try {
-        const userRef = doc(db, "users", clerkId);
-        const snap = await getDoc(userRef);
+        // Check if user profile exists in new structure
+        const existingProfile = await userProfileService.profileExists(email);
+        let uuid;
 
-        if (!snap.exists()) {
-          const newUuid = uuidv4();
+        if (!existingProfile) {
+          uuid = uuidv4();
 
+          // Create profile in userProfiles collection
+          const profileData = {
+            email,
+            uuid,
+            userId: clerkId,
+            displayName: user.fullName || null,
+            createdAt: new Date().toISOString(),
+            lastActive: new Date().toISOString(),
+            status: 'active',
+            profileVersion: '2.0'
+          };
+
+          await userProfileService.createUserProfile(profileData);
+          console.log("✅ User profile stored in userProfiles collection:", { email, uuid });
+
+          // Also keep basic data in users collection for backwards compatibility
+          const userRef = doc(db, "users", clerkId);
           await setDoc(userRef, {
             email,
-            uuid: newUuid,
+            uuid,
             createdAt: new Date().toISOString(),
           });
 
-          localStorage.setItem("userUUID", newUuid); // ✅ Save to local storage
-          console.log("✅ Stored new user:", { email, uuid: newUuid });
+          localStorage.setItem("userUUID", uuid); // ✅ Save to local storage
+          console.log("✅ Stored new user in both collections:", { email, uuid });
         } else {
-          const existingUuid = snap.data().uuid;
-          localStorage.setItem("userUUID", existingUuid); // ✅ Save existing
-          console.log("ℹ️ User already exists in Firestore");
+          // Get UUID from existing profile
+          const profile = await userProfileService.getUserProfile(email);
+          uuid = profile.uuid;
+          
+          // Update last active
+          await userProfileService.updateLastActive(email);
+          
+          localStorage.setItem("userUUID", uuid); // ✅ Save existing
+          console.log("ℹ️ User profile already exists, updated last active:", { email, uuid });
         }
       } catch (err) {
-        console.error("❌ Firestore error:", err);
+        console.error("❌ User storage error:", err);
       }
     };
 

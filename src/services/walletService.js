@@ -1,6 +1,10 @@
 // Core Wallet Integration Service
 import { doc, setDoc, getDoc } from 'firebase/firestore';
 import { db } from '../firebase';
+import userProfileService from './userProfileService';
+import userSecurityService from './userSecurityService';
+import userMetadataService from './userMetadataService';
+
 
 class WalletService {
   constructor() {
@@ -242,70 +246,118 @@ class WalletService {
     }
   }
 
-  // Store wallet information in Firebase
+  // Store wallet information using new separated structure
   async storeWalletInfo(userId, walletData) {
     try {
-      const userDocRef = doc(db, 'users', userId);
+      console.log('💾 Storing wallet info in new separated structure...');
       
-      // Extract email from wallet data
       const userEmail = walletData.userEmail;
       
-      // Create comprehensive structured format
-      const cleanData = {
-        [userEmail]: {
-          profile: {
-            email: userEmail,
-            userId: userId,
-            lastActive: new Date().toISOString()
-          },
-          wallet: {
-            address: walletData.walletAddress,
-            type: walletData.walletType,
-            chainId: walletData.chainId,
-            authentication: {
-              signature: walletData.signature,
-              message: walletData.message,
-              nonce: walletData.nonce,
-              timestamp: walletData.timestamp
-            },
-            connection: {
-              connectedAt: walletData.connectedAt,
-              lastConnected: new Date().toISOString(),
-              status: 'connected'
-            }
-          },
-          metadata: {
-            createdAt: new Date().toISOString(),
-            version: '2.0'
-          }
-        }
+      // 1. Create/Update Profile in userProfiles collection
+      const profileData = {
+        email: userEmail,
+        uuid: userId,
+        userId: userId,
+        displayName: walletData.displayName || null,
+        createdAt: new Date().toISOString(),
+        lastActive: new Date().toISOString(),
+        status: 'active',
+        profileVersion: '2.0'
       };
-
-      // Set the document with the comprehensive structure
-      await setDoc(userDocRef, cleanData, { merge: false });
       
-      console.log(`💾 Comprehensive wallet structure created for ${userEmail}`);
+      await userProfileService.createUserProfile(profileData);
+      console.log('✅ Profile stored in userProfiles collection');
+      
+      // 2. Create/Update Security in userSecurity collection
+      const securityData = {
+        email: userEmail,
+        userId: userId,
+        wallet: {
+          address: walletData.walletAddress,
+          type: walletData.walletType || 'Core Wallet',
+          chainId: walletData.chainId,
+          connectedAt: walletData.connectedAt,
+          lastConnected: new Date().toISOString(),
+          status: 'connected'
+        },
+        authentication: {
+          signature: walletData.signature,
+          message: walletData.message,
+          nonce: walletData.nonce,
+          timestamp: walletData.timestamp,
+          verified: true
+        },
+        security: {
+          encryptionLevel: 'standard',
+          lastSecurityUpdate: new Date().toISOString(),
+          securityVersion: '2.0'
+        },
+        createdAt: new Date().toISOString()
+      };
+      
+      await userSecurityService.createUserSecurity(securityData);
+      console.log('✅ Security data stored in userSecurity collection');
+      
+      // 3. Create/Update Metadata in userMetadata collection
+      const metadataData = {
+        uuid: userId,
+        email: userEmail,
+        userId: userId,
+        walletActivity: {
+          connectedAt: walletData.connectedAt,
+          walletType: walletData.walletType || 'Core Wallet',
+          chainId: walletData.chainId
+        },
+        createdAt: new Date().toISOString()
+      };
+      
+      await userMetadataService.createUserMetadata(metadataData);
+      console.log('✅ Metadata stored in userMetadata collection');
+      
+      console.log(`🎉 Complete wallet structure created for ${userEmail} across all collections!`);
       
     } catch (error) {
-      console.error('❌ Failed to store wallet info in Firebase:', error);
+      console.error('❌ Failed to store wallet info in new structure:', error);
       throw new Error('Failed to save wallet information. Please try again.');
     }
   }
 
-  // Get stored wallet info from Firebase
+  // Get stored wallet info using new separated structure
   async getStoredWalletInfo(userId, userEmail) {
     try {
+      // Get security data from userSecurity collection
+      const securityData = await userSecurityService.getUserSecurity(userEmail);
+      
+      if (securityData && securityData.wallet) {
+        const walletData = securityData.wallet;
+        const authData = securityData.authentication;
+        
+        // Return in the expected format for backwards compatibility
+        return {
+          walletAddress: walletData.address,
+          walletType: walletData.type,
+          chainId: walletData.chainId,
+          signature: authData?.signature,
+          message: authData?.message,
+          nonce: authData?.nonce,
+          timestamp: authData?.timestamp,
+          connectedAt: walletData.connectedAt,
+          lastConnected: walletData.lastConnected,
+          status: walletData.status
+        };
+      }
+      
+      // Fallback: Check old structure for backwards compatibility
       const userDocRef = doc(db, 'users', userId);
       const userDoc = await getDoc(userDocRef);
       
       if (userDoc.exists()) {
         const userData = userDoc.data();
         
-        // Access wallet data from the new clean structure
+        // Access wallet data from the old structure if it exists
         if (userData[userEmail] && userData[userEmail].wallet) {
           const walletData = userData[userEmail].wallet;
           
-          // Return in the expected format for backwards compatibility
           return {
             walletAddress: walletData.address,
             walletType: walletData.type,
@@ -320,7 +372,7 @@ class WalletService {
           };
         }
         
-        // Fallback to old structure for backwards compatibility
+        // Fallback to very old structure
         if (userData.wallet) {
           return userData.wallet;
         }
@@ -328,7 +380,7 @@ class WalletService {
       
       return null;
     } catch (error) {
-      console.error('❌ Failed to get wallet info from Firebase:', error);
+      console.error('❌ Failed to get wallet info from new structure:', error);
       return null;
     }
   }
@@ -513,62 +565,76 @@ class WalletService {
 
   // Secret Key Management Methods
 
-  // Generate and store secret key (only if it doesn't exist)
+  // Generate and store secret key using new userSecurity collection
   async generateAndStoreSecretKey(userId, userEmail) {
     try {
-      const userDocRef = doc(db, 'users', userId);
-      const userDoc = await getDoc(userDocRef);
+      // Check if secret key already exists in userSecurity collection
+      const existingSecurity = await userSecurityService.getUserSecurity(userEmail);
       
-      if (userDoc.exists()) {
-        const userData = userDoc.data();
-        
-        // Check if secret key already exists in the email-based structure
-        if (userData[userEmail] && 
-            userData[userEmail].wallet && 
-            userData[userEmail].wallet.secretKey) {
-          console.log('🔐 Secret key already exists, returning existing key');
-          return userData[userEmail].wallet.secretKey.code;
-        }
+      if (existingSecurity && existingSecurity.secretKey) {
+        console.log('🔐 Secret key already exists in userSecurity collection');
+        return existingSecurity.secretKey.code;
       }
       
       // Generate new 5-digit secret key
       const secretCode = Math.floor(10000 + Math.random() * 90000).toString();
       
-      // Add secret key to the existing email-based wallet structure
-      const secretKeyUpdate = {
-        [userEmail]: {
-          wallet: {
-            secretKey: {
-              code: secretCode,
-              generatedAt: new Date().toISOString(),
-              status: 'active'
-            }
-          }
-        }
+      // Create or update security data with secret key
+      const secretKeyData = {
+        code: secretCode,
+        generatedAt: new Date().toISOString(),
+        status: 'active',
+        usageCount: 0,
+        lastUsed: null
       };
       
-      // Merge with existing structure (don't overwrite other wallet data)
-      await setDoc(userDocRef, secretKeyUpdate, { merge: true });
+      if (existingSecurity) {
+        // Update existing security data with secret key
+        await userSecurityService.updateUserSecurity(userEmail, { secretKey: secretKeyData });
+      } else {
+        // Create new security entry with secret key
+        const securityData = {
+          email: userEmail,
+          userId: userId,
+          secretKey: secretKeyData,
+          security: {
+            encryptionLevel: 'standard',
+            lastSecurityUpdate: new Date().toISOString(),
+            securityVersion: '2.0'
+          },
+          createdAt: new Date().toISOString()
+        };
+        
+        await userSecurityService.createUserSecurity(securityData);
+      }
       
-      console.log('🔐 Secret key added to existing wallet structure');
+      console.log('🔐 Secret key stored in userSecurity collection');
       return secretCode;
       
     } catch (error) {
-      console.error('❌ Failed to generate/store secret key:', error);
+      console.error('❌ Failed to generate/store secret key in new structure:', error);
       throw new Error('Failed to generate secret key. Please try again.');
     }
   }
 
-  // Get existing secret key from the email-based wallet structure
+  // Get existing secret key from userSecurity collection
   async getSecretKey(userId, userEmail) {
     try {
+      // Get from userSecurity collection first
+      const securityData = await userSecurityService.getUserSecurity(userEmail);
+      
+      if (securityData && securityData.secretKey) {
+        return securityData.secretKey.code;
+      }
+      
+      // Fallback: Check old structure for backwards compatibility
       const userDocRef = doc(db, 'users', userId);
       const userDoc = await getDoc(userDocRef);
       
       if (userDoc.exists()) {
         const userData = userDoc.data();
         
-        // Look for secret key in the email-based structure
+        // Look for secret key in the old email-based structure
         if (userData[userEmail] && 
             userData[userEmail].wallet && 
             userData[userEmail].wallet.secretKey) {
@@ -578,7 +644,7 @@ class WalletService {
       
       return null;
     } catch (error) {
-      console.error('❌ Failed to get secret key:', error);
+      console.error('❌ Failed to get secret key from new structure:', error);
       return null;
     }
   }

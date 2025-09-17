@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { db } from "../firebase";
 import { doc, setDoc, getDoc } from "firebase/firestore";
 import { v4 as uuidv4 } from "uuid";
+import userProfileService from "../services/userProfileService";
 
 const Hero = () => {
   const { isSignedIn, user } = useUser();
@@ -16,21 +17,44 @@ const Hero = () => {
         const email = user.primaryEmailAddress?.emailAddress;
         if (!email) return;
 
-        const userRef = doc(db, "users", email);
-        const snapshot = await getDoc(userRef);
+        // Check if user profile already exists using new structure
+        const existingProfile = await userProfileService.profileExists(email);
         let uuid;
 
-        if (!snapshot.exists()) {
+        if (!existingProfile) {
           uuid = uuidv4();
+          
+          // Create basic profile data in userProfiles collection
+          const profileData = {
+            email,
+            uuid,
+            userId: email, // Using email as userId for consistency
+            displayName: user.fullName || null,
+            createdAt: new Date().toISOString(),
+            lastActive: new Date().toISOString(),
+            status: 'active',
+            profileVersion: '2.0'
+          };
+          
+          await userProfileService.createUserProfile(profileData);
+          console.log("✅ User profile stored in userProfiles collection:", { email, uuid });
+          
+          // Also keep basic data in users collection for backwards compatibility
+          const userRef = doc(db, "users", email);
           await setDoc(userRef, {
             email,
             uuid,
             createdAt: new Date().toISOString(),
           });
-          console.log("✅ User stored:", { email, uuid });
+          console.log("✅ Basic user data stored in users collection for compatibility");
         } else {
-          uuid = snapshot.data().uuid;
-          console.log("ℹ️ User already exists:", { email, uuid });
+          // Get UUID from existing profile
+          const profile = await userProfileService.getUserProfile(email);
+          uuid = profile.uuid;
+          
+          // Update last active
+          await userProfileService.updateLastActive(email);
+          console.log("ℹ️ User profile already exists, updated last active:", { email, uuid });
         }
 
         // ✅ Save UUID for later navigation

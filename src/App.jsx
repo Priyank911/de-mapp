@@ -9,8 +9,6 @@ import Contact from "./pages/Contact";
 import Dashboard from "./pages/Dashboard";
 import Footer from "./components/Footer";
 import FirestoreTest from "./components/FirestoreTest";
-import DeployedContractTest from './components/DeployedContractTest';
-import EnhancedContractTest from './components/EnhancedContractTest';
 
 export default function App() {
   const location = useLocation();
@@ -28,10 +26,6 @@ export default function App() {
 
         {/* ✅ Firestore Test Route */}
         <Route path="/firestore-test" element={<FirestoreTest />} />
-
-        {/* ✅ Contract Testing Routes */}
-        <Route path="/contract-test" element={<DeployedContractTest />} />
-        <Route path="/enhanced-test" element={<EnhancedContractTest />} />
 
         {/* Clerk Auth Pages */}
         <Route path="/sign-in/*" element={<SignIn routing="path" path="/sign-in" />} />
