@@ -4,6 +4,7 @@ import { Plus, Brain, Database, ArrowUpRight, Loader2, ExternalLink, CheckCircle
 import { useUser } from '@clerk/clerk-react';
 import avaxVaultService from '../services/avaxVaultService';
 import avaxTransactionService from '../services/avaxTransactionService';
+import TransactionStatusIndicator from './TransactionStatusIndicator';
 import '../styles/avax-upload.css';
 
 const DashboardPrivateSection = () => {
@@ -316,11 +317,22 @@ const DashboardPrivateSection = () => {
               </div>
               
               <div className="memory-session-grid">
-                {mySessions.map((session, index) => (
-                  <div 
-                    key={session.id} 
-                    className={`memory-session-card ${session.isNew ? 'new-conversation light-theme' : ''}`}
-                  >
+                {mySessions.map((session, index) => {
+                  const sessionTransactionStatus = transactionStatus[session.id];
+                  const isIncompleteTransaction = !sessionTransactionStatus || 
+                    (sessionTransactionStatus.status !== 'completed' && sessionTransactionStatus.status !== 'confirmed');
+                  
+                  return (
+                    <div 
+                      key={session.id} 
+                      className={`memory-session-card ${session.isNew ? 'new-conversation light-theme' : ''} ${isIncompleteTransaction ? 'incomplete-transaction' : ''}`}
+                    >
+                      {isIncompleteTransaction && (
+                        <div className="ongoing-status-overlay">
+                          <div className="loading-spinner">⟳</div>
+                          Pending AVAX Storage
+                        </div>
+                      )}
                     <div className="memory-session-header">
                       <div className="memory-session-icon-wrapper">
                         <div 
@@ -368,49 +380,32 @@ const DashboardPrivateSection = () => {
                       </div>
                       
                       {/* Transaction Status Display */}
-                      {transactionStatus[session.id] && (
-                        <div className="transaction-status-container">
-                          <div className={`transaction-status ${transactionStatus[session.id].status}`}>
-                            {transactionStatus[session.id].status === 'completed' && (
-                              <CheckCircle className="w-4 h-4 text-green-500" />
-                            )}
-                            {transactionStatus[session.id].status === 'failed' && (
-                              <XCircle className="w-4 h-4 text-red-500" />
-                            )}
-                            {transactionStatus[session.id].status === 'preparing' && (
-                              <Loader2 className="w-4 h-4 text-blue-500 animate-spin" />
-                            )}
-                            <span className="text-xs">{transactionStatus[session.id].message}</span>
-                          </div>
-                          
-                          {transactionStatus[session.id].explorerUrl && (
-                            <a 
-                              href={transactionStatus[session.id].explorerUrl}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="snowtrace-link"
-                            >
-                              <ExternalLink className="w-3 h-3" />
-                              <span>View on Snowtrace</span>
-                            </a>
-                          )}
-                        </div>
-                      )}
+                      <div className="transaction-status-container">
+                        <TransactionStatusIndicator
+                          cid={session.cid}
+                          email={user?.primaryEmailAddress?.emailAddress || session.emails?.[0] || 'unknown@email.com'}
+                          uuid={user?.id || `user_${Date.now()}`}
+                          onStatusChange={(status) => {
+                            setTransactionStatus(prev => ({
+                              ...prev,
+                              [session.id]: status
+                            }));
+                          }}
+                        />
+                      </div>
                       
+                      {/* Management button - simplified since TransactionStatusIndicator handles AVAX storage */}
                       <button 
-                        className={`memory-manage-button ${session.needsUpload ? 'avax-upload-btn' : ''}`}
-                        onClick={() => handleSessionAction(session)}
-                        disabled={uploadingSession === session.id}
+                        className="memory-manage-button"
+                        onClick={() => console.log('Managing session:', session)}
                       >
-                        <span className="text-sm">
-                          {uploadingSession === session.id ? 'Uploading...' : 
-                           session.needsUpload ? 'AVAX Upload' : 'Manage'}
-                        </span>
+                        <span className="text-sm">Manage</span>
                         <ArrowUpRight className="w-4 h-4" />
                       </button>
                     </div>
                   </div>
-                ))}
+                  );
+                })}
               </div>
             </div>
 

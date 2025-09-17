@@ -9,6 +9,7 @@ import Contact from "./pages/Contact";
 import Dashboard from "./pages/Dashboard";
 import Footer from "./components/Footer";
 import FirestoreTest from "./components/FirestoreTest";
+import "./styles/transaction-status.css";
 
 export default function App() {
   const location = useLocation();
