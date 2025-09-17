@@ -21,8 +21,6 @@ export default function NavBar() {
           <li><a href="/">Home</a></li>
           <li><a href="/about">About Us</a></li>
           <li><a href="/documentation">Documentation</a></li>
-          <li><a href="/contract-test">Contract Test</a></li>
-          <li><a href="/enhanced-test">Enhanced Test</a></li>
         </ul>
 
         {/* CTA */}

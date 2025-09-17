@@ -1,6 +1,6 @@
 // src/components/DashboardPrivateSection.jsx
 import React, { useState, useEffect } from "react";
-import { Plus, Brain, Database, ArrowUpRight, Loader2, ExternalLink, CheckCircle, XCircle } from "lucide-react";
+import { Plus, Brain, Database, ArrowUpRight, Loader2, ExternalLink, CheckCircle, XCircle, AlertTriangle } from "lucide-react";
 import { useUser } from '@clerk/clerk-react';
 import avaxVaultService from '../services/avaxVaultService';
 import avaxTransactionService from '../services/avaxTransactionService';
@@ -12,11 +12,11 @@ const DashboardPrivateSection = () => {
   const [dashboardData, setDashboardData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [uploadingSession, setUploadingSession] = useState(null);
+  const [_uploadingSession, setUploadingSession] = useState(null);
   const [transactionStatus, setTransactionStatus] = useState({}); // Track transaction status per session
 
   // Session action handler
-  const handleSessionAction = async (session) => {
+  const _handleSessionAction = async (session) => {
     if (session.needsUpload) {
       await handleAvaxUpload(session);
     } else {
@@ -216,7 +216,7 @@ const DashboardPrivateSection = () => {
                 }
               </p>
             </div>
-            <div className="flex space-x-3">
+            <div className="flex space-x-3" style={{ marginTop: '16px' }}>
               <button className="primary-button">
                 <Plus className="w-5 h-5" />
                 <span>Deploy Memory</span>
@@ -226,28 +226,60 @@ const DashboardPrivateSection = () => {
         </div>
 
         {userData && (
-          <div className="mb-6 p-4 bg-green-50 border border-green-200 rounded-lg">
-            <div className="flex items-center space-x-2">
-              <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-              <p className="text-green-800 text-sm">
-                ✅ Connected to AVAX Vault • Last scan: {userData.metadata?.lastUpdated ? 
-                  avaxVaultService.getRelativeTime(userData.metadata.lastUpdated) : 'Unknown'}
-              </p>
+          <div className="mb-6 p-4 bg-gradient-to-r from-green-50 to-emerald-50 border border-green-200 rounded-xl shadow-sm hover:shadow-md transition-all duration-300" style={{ marginBottom: '32px' }}>
+            <div className="flex items-center justify-between">
+              <div className="flex items-center space-x-3">
+                <div className="relative">
+                  <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
+                  <div className="absolute inset-0 w-3 h-3 bg-green-500 rounded-full animate-ping opacity-30"></div>
+                </div>
+                <div>
+                  <p className="text-green-800 text-sm font-medium flex items-center space-x-2">
+                    <CheckCircle className="w-4 h-4" />
+                    <span>Connected to AVAX Vault</span>
+                  </p>
+                  <p className="text-green-600 text-xs mt-1">
+                    Last scan: {userData.metadata?.lastUpdated ? 
+                      avaxVaultService.getRelativeTime(userData.metadata.lastUpdated) : 'Unknown'}
+                  </p>
+                </div>
+              </div>
+              
+              {userData.wallet?.address && (
+                <div className="flex items-center space-x-2">
+                  <div className="bg-white/60 backdrop-blur-sm px-3 py-2 rounded-lg border border-green-100">
+                    <p className="text-green-700 text-xs font-mono">
+                      {userData.wallet.address.slice(0, 6)}...{userData.wallet.address.slice(-4)}
+                    </p>
+                  </div>
+                  <button 
+                    className="p-2 hover:bg-green-100 rounded-lg transition-colors duration-200 group"
+                    onClick={() => navigator.clipboard.writeText(userData.wallet.address)}
+                    title="Copy wallet address"
+                  >
+                    <ExternalLink className="w-4 h-4 text-green-600 group-hover:text-green-700" />
+                  </button>
+                </div>
+              )}
             </div>
+            
             {userData.wallet?.address && (
-              <p className="text-green-700 text-xs mt-1">
-                Wallet: {userData.wallet.address.slice(0, 8)}...{userData.wallet.address.slice(-6)}
-              </p>
+              <div className="mt-3 pt-3 border-t border-green-100">
+                <div className="flex items-center justify-between text-xs">
+                  <span className="text-green-600">Network: Avalanche Fuji</span>
+                  <span className="text-green-600">Status: Active</span>
+                </div>
+              </div>
             )}
           </div>
         )}
 
         {!userData && (
-          <div className="mb-6 p-4 bg-yellow-50 border border-yellow-200 rounded-lg">
-            <div className="flex items-center space-x-2">
-              <div className="w-2 h-2 bg-yellow-500 rounded-full"></div>
+          <div className="mb-6 p-4 bg-yellow-50 border border-yellow-200 rounded-lg" style={{ marginBottom: '32px' }}>
+            <div className="flex items-center space-x-3">
+              <AlertTriangle className="w-5 h-5 text-yellow-600" />
               <p className="text-yellow-800 text-sm">
-                🔄 No AVAX Vault data found yet. The auto-scan service will create your vault when email data is detected.
+                No AVAX Vault data found yet. The auto-scan service will create your vault when email data is detected.
               </p>
             </div>
           </div>
@@ -301,16 +333,26 @@ const DashboardPrivateSection = () => {
         <div className="grid grid-cols-1 gap-8">
           <div className="space-y-8">
             <div>
-              <div className="flex items-center justify-between mb-6">
-                <h2 className="section-heading">My Memory Sessions</h2>
-                <div className="flex space-x-2">
+              <div className="flex items-center justify-between mb-6" style={{ marginTop: '24px', marginBottom: '32px' }}>
+                <h2 className="section-heading" style={{ marginBottom: '8px' }}>My Memory Sessions</h2>
+                <div style={{ 
+                  display: 'flex', 
+                  flexDirection: 'row', 
+                  alignItems: 'center', 
+                  gap: '16px',
+                  marginTop: '8px' 
+                }}>
                   <button 
                     onClick={() => window.location.reload()} 
-                    className="secondary-button text-sm"
+                    className="secondary-button text-sm px-4 py-2"
+                    style={{ display: 'inline-flex' }}
                   >
                     Refresh Data
                   </button>
-                  <button className="secondary-button">
+                  <button 
+                    className="secondary-button text-sm px-4 py-2"
+                    style={{ display: 'inline-flex' }}
+                  >
                     View all
                   </button>
                 </div>
@@ -409,11 +451,19 @@ const DashboardPrivateSection = () => {
               </div>
             </div>
 
-            <div>
-              <div className="flex items-center justify-between mb-6">
-                <h2 className="section-heading">My Private Vaults</h2>
-                <button className="primary-button">
-                  Create New Vault
+            <div style={{ marginTop: '32px' }}>
+              <div className="flex items-center justify-between mb-6" style={{ marginBottom: '24px', paddingTop: '16px', paddingBottom: '16px' }}>
+                <h2 className="section-heading" style={{ paddingTop: '8px', paddingBottom: '8px' }}>My Private Vaults</h2>
+                <button 
+                  className="primary-button"
+                  style={{ 
+                    paddingTop: '12px', 
+                    paddingBottom: '12px',
+                    position: 'relative',
+                    zIndex: 10
+                  }}
+                >
+                  <span style={{ position: 'relative', zIndex: 11 }}>Create New Vault</span>
                 </button>
               </div>
 

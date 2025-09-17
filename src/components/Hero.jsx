@@ -3,7 +3,7 @@ import React, { useEffect } from "react";
 import { SignInButton, useUser } from "@clerk/clerk-react";
 import { useNavigate } from "react-router-dom";
 import { db } from "../firebase";
-import { doc, setDoc, getDoc } from "firebase/firestore";
+import { doc, setDoc } from "firebase/firestore";
 import { v4 as uuidv4 } from "uuid";
 import userProfileService from "../services/userProfileService";
 
@@ -70,6 +70,16 @@ const Hero = () => {
 
   return (
     <section className="hero">
+      <video
+        className="hero-video"
+        autoPlay
+        loop
+        muted
+        playsInline
+      >
+        <source src="/hero.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
       <div className="hero-content">
         <h1>
           Power Up with <span>Persistent Memory</span>

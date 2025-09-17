@@ -336,25 +336,7 @@ const Dashboard = () => {
         </div>
       </div>
       
-      {/* Wallet Status Debug Info */}
-      {process.env.NODE_ENV === 'development' && (
-        <div style={{ 
-          position: "fixed", 
-          bottom: "20px", 
-          left: "20px", 
-          background: "rgba(0,0,0,0.8)", 
-          color: "white", 
-          padding: "10px", 
-          borderRadius: "8px",
-          fontSize: "12px",
-          fontFamily: "monospace"
-        }}>
-          <p>User ID: {userId}</p>
-          <p>Section: {currentSection}</p>
-          <p>Wallet: {walletStatus.isConnected ? `Connected (${walletStatus.address?.slice(0,6)}...)` : 'Not Connected'}</p>
-          {walletStatus.error && <p style={{color: "#ef4444"}}>Error: {walletStatus.error}</p>}
-        </div>
-      )}
+     
     </div>
   );
 };

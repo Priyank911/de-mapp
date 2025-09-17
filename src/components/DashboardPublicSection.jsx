@@ -63,6 +63,7 @@ const DashboardPublicSection = () => {
             </div>
             <button 
               className="primary-button"
+              style={{ marginTop: '16px' }}
             >
               <span>Explore all vaults</span>
               <ArrowUpRight className="w-4 h-4" />
@@ -78,23 +79,15 @@ const DashboardPublicSection = () => {
               <div 
                 className={`vault-showcase-image ${index === 0 || index === 2 ? 'lime' : ''}`}
               >
-                <div className="absolute top-4 right-4">
-                  <button className="w-8 h-8 bg-black/20 backdrop-blur-sm rounded-full flex items-center justify-center border border-white/10">
-                    <ArrowUpRight className="w-4 h-4 text-white" />
-                  </button>
-                </div>
                 {/* Content overlay */}
                 {vault.id === "coding_001" && (
                   <div className="text-center">
                     <div className="w-16 h-16 bg-black/20 backdrop-blur-sm rounded-2xl mx-auto mb-4 flex items-center justify-center">
-                      <Brain className="w-8 h-8 text-black" />
                     </div>
-                    <h3 className="text-black font-semibold text-lg">React Mastery</h3>
                   </div>
                 )}
                 {vault.id === "research_001" && (
                   <div className="w-24 h-16 bg-white/10 backdrop-blur-sm rounded-lg flex items-center justify-center">
-                    <Database className="w-6 h-6 text-white" />
                   </div>
                 )}
               </div>

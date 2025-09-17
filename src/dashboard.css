@@ -809,6 +809,7 @@ body {
   color: var(--black);
   font-weight: 700;
   box-shadow: var(--shadow-lime);
+  position: relative;
 }
 
 .primary-button::before {

@@ -1,0 +1,88 @@
+/* Modern Transaction Status Indicator Styles */
+
+/* Clean compact modern design (balanced braces) */
+
+.avax-success-container {
+  position: relative;
+  background: linear-gradient(180deg, rgba(255,255,255,0.95), rgba(246,255,246,0.9));
+  border: 1px solid rgba(16,185,129,0.12);
+  backdrop-filter: blur(6px);
+  border-radius: 10px;
+  padding: 8px 10px;
+  margin-top: 6px;
+  overflow: visible;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: transform 220ms cubic-bezier(.4,0,.2,1), box-shadow 220ms;
+  box-shadow: 0 1px 2px rgba(2,6,23,0.04);
+}
+
+.avax-success-container:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 22px rgba(16,185,129,0.08);
+}
+
+.avax-success-container::after {
+  content: '';
+  position: absolute;
+  left: 12px; right: 12px; top: 6px; height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(16,185,129,0.06), transparent);
+  pointer-events: none;
+}
+
+.avax-success-icon{
+  width:16px; height:16px; border-radius:6px; display:inline-flex; align-items:center; justify-content:center;
+  background:linear-gradient(135deg,#10b981,#22c55e); box-shadow:0 2px 6px rgba(16,185,129,0.06); flex-shrink:0; transition:transform 180ms ease;
+}
+
+.avax-success-icon:hover{transform:scale(1.08) rotate(-6deg)}
+
+.avax-text-content{display:flex;flex-direction:column;min-width:0;gap:2px}
+
+.avax-text-title{font-size:13px;font-weight:600;color:#064e3b;margin:0;padding:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.avax-text-subtitle{font-size:11px;color:rgba(6,78,59,0.7);margin:0;padding:0}
+
+.avax-live-badge{position:relative;margin-left:auto;background:rgba(16,185,129,0.08);border-radius:14px;padding:4px 8px;font-size:11px;font-weight:700;color:#065f46;display:inline-flex;align-items:center;gap:8px;flex-shrink:0}
+.avax-live-badge:hover{transform:translateY(-2px);box-shadow:0 6px 12px rgba(16,185,129,0.06)}
+.avax-live-dot{width:6px;height:6px;background:#10b981;border-radius:999px;box-shadow:0 0 6px rgba(16,185,129,0.12);animation:pulse 1.8s infinite}
+
+.avax-sync-container{display:inline-flex;align-items:center;gap:8px;padding:6px 8px;border-radius:12px;background:rgba(59,130,246,0.06);border:1px solid rgba(59,130,246,0.12);box-shadow:0 2px 6px rgba(59,130,246,0.03)}
+.avax-sync-container:hover{transform:translateY(-2px);box-shadow:0 8px 16px rgba(59,130,246,0.06)}
+.avax-sync-icon{width:12px;height:12px;color:#2563eb;animation:spin 2s linear infinite}
+.avax-sync-text{font-size:11px;font-weight:600;color:#1e40af}
+
+/* Animations */
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.6;transform:scale(1.08)}}
+@keyframes spin{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+
+/* Layout helpers */
+.avax-main-container{width:100%;max-width:360px;margin:0 auto}
+.avax-flex-container{display:flex;align-items:center;justify-content:space-between;gap:12px;width:100%}
+.avax-text-content{flex:1;min-width:0}
+
+/* Responsive tweaks */
+@media (max-width:768px){
+  .avax-success-container{padding:8px;border-radius:9px}
+  .avax-text-title{font-size:12px}
+  .avax-text-subtitle{font-size:10px}
+  .avax-live-badge{padding:3px 6px;font-size:10px}
+}
+@media (max-width:480px){
+  .avax-success-container{padding:6px}
+  .avax-success-icon{width:14px;height:14px}
+  .avax-text-title{font-size:11px}
+  .avax-text-subtitle{font-size:9px}
+  .avax-live-badge{padding:2px 5px;font-size:9px}
+  .avax-live-dot{width:4px;height:4px}
+}
+
+/* Focus & dark mode */
+.avax-success-container:focus-within{outline:2px solid rgba(16,185,129,0.12);outline-offset:2px}
+.avax-sync-container:focus-within{outline:2px solid rgba(59,130,246,0.12);outline-offset:2px}
+@media (prefers-color-scheme:dark){
+  .avax-success-container{background:linear-gradient(180deg, rgba(10,20,16,0.2), rgba(8,24,12,0.14));border-color:rgba(16,185,129,0.22)}
+  .avax-text-title{color:#a7f3d0}
+  .avax-text-subtitle{color:rgba(167,243,208,0.75)}
+  .avax-live-badge{background:rgba(16,185,129,0.12);color:#a7f3d0}
+}
