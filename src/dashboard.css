@@ -810,6 +810,7 @@ body {
   font-weight: 700;
   box-shadow: var(--shadow-lime);
   position: relative;
+  z-index:1;
 }
 
 .primary-button::before {

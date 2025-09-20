@@ -237,30 +237,35 @@ const TransactionStatusIndicator = ({ cid, email, uuid, onStatusChange }) => {
           </span>
         )}
         
-        {/* Show success message */}
+        {/* Show success message - Magical Interface */}
         {successMessage && (
           <div className="avax-main-container">
             <div className="avax-success-container">
-              <div className="avax-flex-container">
-                <div className="avax-success-icon">
-                  <svg className="w-2.5 h-2.5 text-white" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"/>
-                  </svg>
-                </div>
-                <div className="avax-text-content">
-                  <p className="avax-text-title">
-                    Stored on AVAX
-                  </p>
-                  <p className="avax-text-subtitle">
-                    {successMessage.includes('synced') || successMessage.includes('Record synced') 
-                      ? 'Synced from blockchain' 
-                      : 'Verified on network'
-                    }
-                  </p>
-                </div>
-                <span className="avax-live-badge" style={{marginLeft:8, transform: 'translateY(-4px)'}}>
-                  <div className="avax-live-dot"></div>
-                  Live
+              <div className="avax-success-icon">
+                <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"/>
+                </svg>
+              </div>
+              
+              <div className="avax-text-content">
+                <p className="avax-text-title">
+                  Stored on AVAX
+                </p>
+                <p className="avax-text-subtitle">
+                  {successMessage.includes('synced') || successMessage.includes('Record synced') 
+                    ? 'Blockchain synchronized' 
+                    : 'Network verified & secured'
+                  }
+                </p>
+              </div>
+              
+              <div className="avax-live-badge">
+                <div className="avax-live-dot"></div>
+                <span style={{ fontSize: '11px', fontWeight: '700', letterSpacing: '0.02em' }}>
+                  {successMessage.includes('synced') || successMessage.includes('Record synced') 
+                    ? 'Synced' 
+                    : 'Live'
+                  }
                 </span>
               </div>
             </div>

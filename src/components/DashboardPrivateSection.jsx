@@ -1,9 +1,10 @@
 // src/components/DashboardPrivateSection.jsx
 import React, { useState, useEffect } from "react";
-import { Plus, Brain, Database, ArrowUpRight, Loader2, ExternalLink, CheckCircle, XCircle, AlertTriangle } from "lucide-react";
+import { Plus, Brain, Database, ArrowUpRight, Loader2, ExternalLink, CheckCircle, XCircle, AlertTriangle, Copy, X } from "lucide-react";
 import { useUser } from '@clerk/clerk-react';
 import avaxVaultService from '../services/avaxVaultService';
 import avaxTransactionService from '../services/avaxTransactionService';
+import fetchService from '../services/fetchService';
 import TransactionStatusIndicator from './TransactionStatusIndicator';
 import '../styles/avax-upload.css';
 
@@ -14,6 +15,13 @@ const DashboardPrivateSection = () => {
   const [error, setError] = useState(null);
   const [_uploadingSession, setUploadingSession] = useState(null);
   const [transactionStatus, setTransactionStatus] = useState({}); // Track transaction status per session
+  const [showManagePopup, setShowManagePopup] = useState(false);
+  const [selectedSession, setSelectedSession] = useState(null);
+  const [showFetchCodePopup, setShowFetchCodePopup] = useState(false);
+  const [fetchCode, setFetchCode] = useState('');
+  const [isCreatingFetch, setIsCreatingFetch] = useState(false);
+  const [copySuccess, setCopySuccess] = useState(false);
+  const [fetchRequestInfo, setFetchRequestInfo] = useState(null);
 
   // Session action handler
   const _handleSessionAction = async (session) => {
@@ -121,6 +129,54 @@ const DashboardPrivateSection = () => {
       
     } catch (error) {
       console.error('❌ Error updating session after upload:', error);
+    }
+  };
+
+  // Handle Mapp button click - Create fetch request
+  const handleCreateFetchRequest = async () => {
+    try {
+      setIsCreatingFetch(true);
+      
+      const userEmail = user?.primaryEmailAddress?.emailAddress || 'unknown@email.com';
+      
+      const result = await fetchService.createFetchRequest(selectedSession, userEmail);
+      
+      if (result.success) {
+        setFetchCode(result.fetchCode);
+        setFetchRequestInfo({
+          isExisting: result.isExisting,
+          accessCount: result.data.accessCount || 1,
+          createdAt: result.data.createdAt,
+          lastAccessedAt: result.data.lastAccessedAt
+        });
+        setShowManagePopup(false);
+        setShowFetchCodePopup(true);
+        
+        if (result.isExisting) {
+          console.log('✅ Existing fetch request retrieved:', result.fetchCode, 'Access count:', result.data.accessCount);
+        } else {
+          console.log('✅ New fetch request created:', result.fetchCode);
+        }
+      } else {
+        console.error('❌ Failed to create fetch request:', result.error);
+        alert('Failed to create fetch request. Please try again.');
+      }
+    } catch (error) {
+      console.error('❌ Error creating fetch request:', error);
+      alert('An error occurred. Please try again.');
+    } finally {
+      setIsCreatingFetch(false);
+    }
+  };
+
+  // Handle copy to clipboard
+  const handleCopyFetchCode = async () => {
+    const result = await fetchService.copyToClipboard(fetchCode);
+    if (result.success) {
+      setCopySuccess(true);
+      setTimeout(() => setCopySuccess(false), 2000);
+    } else {
+      alert('Failed to copy to clipboard');
     }
   };
 
@@ -439,7 +495,10 @@ const DashboardPrivateSection = () => {
                       {/* Management button - simplified since TransactionStatusIndicator handles AVAX storage */}
                       <button 
                         className="memory-manage-button"
-                        onClick={() => console.log('Managing session:', session)}
+                        onClick={() => {
+                          setSelectedSession(session);
+                          setShowManagePopup(true);
+                        }}
                       >
                         <span className="text-sm">Manage</span>
                         <ArrowUpRight className="w-4 h-4" />
@@ -505,6 +564,174 @@ const DashboardPrivateSection = () => {
           </div>
         </div>
       </div>
+
+      {/* Beautiful Manage Session Popup */}
+      {showManagePopup && selectedSession && (
+        <div className="manage-popup-overlay" onClick={() => setShowManagePopup(false)}>
+          <div className="manage-popup-container" onClick={(e) => e.stopPropagation()}>
+            <div className="manage-popup-header">
+              <div className="manage-popup-icon">
+                <Database className="w-5 h-5" />
+              </div>
+              <div className="manage-popup-title">
+                <h3>Manage Memory Session</h3>
+                <p>Are you sure you want to fetch this file?</p>
+              </div>
+            </div>
+            
+            <div className="manage-popup-content">
+              <div className="session-details-card">
+                <div className="session-detail-item">
+                  <span className="detail-label">Session:</span>
+                  <span className="detail-value">{selectedSession.name}</span>
+                </div>
+                <div className="session-detail-item">
+                  <span className="detail-label">Size:</span>
+                  <span className="detail-value">{selectedSession.memorySize}</span>
+                </div>
+                <div className="session-detail-item">
+                  <span className="detail-label">Last Active:</span>
+                  <span className="detail-value">{selectedSession.lastActive}</span>
+                </div>
+                {selectedSession.cid && (
+                  <div className="session-detail-item">
+                    <span className="detail-label">CID:</span>
+                    <span className="detail-value cid-value">
+                      {selectedSession.cid.slice(0, 8)}...{selectedSession.cid.slice(-6)}
+                    </span>
+                  </div>
+                )}
+              </div>
+            </div>
+            
+            <div className="manage-popup-actions">
+              <button 
+                className="popup-btn popup-btn-cancel"
+                onClick={() => setShowManagePopup(false)}
+              >
+                Cancel
+              </button>
+              <button 
+                className="popup-btn popup-btn-primary"
+                onClick={handleCreateFetchRequest}
+                disabled={isCreatingFetch}
+              >
+                {isCreatingFetch ? (
+                  <>
+                    <Loader2 className="w-4 h-4 animate-spin mr-2" />
+                    Creating...
+                  </>
+                ) : (
+                  'Mapp'
+                )}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Fetch Code Success Popup */}
+      {showFetchCodePopup && fetchCode && (
+        <div className="manage-popup-overlay" onClick={() => setShowFetchCodePopup(false)}>
+          <div 
+            className="fetch-code-popup-container" 
+            data-existing={fetchRequestInfo?.isExisting || false}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="fetch-code-header">
+              <div className="fetch-code-icon">
+                {fetchRequestInfo?.isExisting ? (
+                  <Database className="w-6 h-6" />
+                ) : (
+                  <CheckCircle className="w-6 h-6" />
+                )}
+              </div>
+              <div className="fetch-code-title">
+                <h3>
+                  {fetchRequestInfo?.isExisting ? 'Existing Fetch Code Retrieved' : 'Fetch Request Created'}
+                </h3>
+                <p>
+                  {fetchRequestInfo?.isExisting 
+                    ? `This CID already has a fetch code. Access count: ${fetchRequestInfo.accessCount || 1}`
+                    : 'Your unique fetch code has been generated successfully'
+                  }
+                </p>
+              </div>
+            </div>
+            
+            <div className="fetch-code-content">
+              <div className="fetch-code-card">
+                <div className="fetch-code-label">
+                  <Copy className="w-4 h-4" />
+                  <span>Unique Fetch Code</span>
+                </div>
+                <div className="fetch-code-value">
+                  <code>{fetchCode}</code>
+                  <button 
+                    className={`copy-btn ${copySuccess ? 'copied' : ''}`}
+                    onClick={handleCopyFetchCode}
+                  >
+                    {copySuccess ? (
+                      <>
+                        <CheckCircle className="w-4 h-4" />
+                        Copied!
+                      </>
+                    ) : (
+                      <>
+                        <Copy className="w-4 h-4" />
+                        Copy
+                      </>
+                    )}
+                  </button>
+                </div>
+                
+                <div className="fetch-code-info">
+                  <div className="info-item">
+                    <span className="info-label">File:</span>
+                    <span className="info-value">{selectedSession?.name}</span>
+                  </div>
+                  <div className="info-item">
+                    <span className="info-label">Access Count:</span>
+                    <span className="info-value">{fetchRequestInfo?.accessCount || 1}</span>
+                  </div>
+                  <div className="info-item">
+                    <span className="info-label">Status:</span>
+                    <span className="info-value status-active">
+                      {fetchRequestInfo?.isExisting ? 'Updated' : 'Active'}
+                    </span>
+                  </div>
+                </div>
+                
+                <div className="fetch-code-usage">
+                  <h4>How to use:</h4>
+                  <p>
+                    {fetchRequestInfo?.isExisting 
+                      ? 'This fetch code already exists for this CID. You can continue using the same code in your extension to access the context data.'
+                      : 'Use this code in your extension to fetch the context data. Each CID has only one unique fetch code.'
+                    }
+                  </p>
+                </div>
+              </div>
+            </div>
+            
+            <div className="fetch-code-actions">
+              <button 
+                className="popup-btn popup-btn-primary fetch-close-btn"
+                onClick={() => {
+                  setShowFetchCodePopup(false);
+                  setFetchCode('');
+                  setSelectedSession(null);
+                  setCopySuccess(false);
+                  setFetchRequestInfo(null);
+                }}
+              >
+                <span className="close-icon"></span>
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

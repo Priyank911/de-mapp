@@ -83,7 +83,7 @@ const DashboardEnterpriseSection = () => {
               <h1 className="section-page-title">Enterprise Memory Hub</h1>
               <p className="section-page-description">Team collaboration and shared knowledge management</p>
             </div>
-            <div className="flex space-x-3">
+            <div className="flex space-x-3" style={{ marginTop: '16px' }}>
               <button className="primary-button">
                 <Plus className="w-5 h-5" />
                 <span>Deploy Team Session</span>
@@ -146,8 +146,8 @@ const DashboardEnterpriseSection = () => {
           {/* Main Content */}
           <div className="space-y-8">
             {/* Team Memory Sessions */}
-            <div>
-              <div className="flex items-center justify-between mb-6">
+            <div style={{ marginTop: '2rem', marginBottom: '2rem' }}>
+              <div className="flex items-center justify-between mb-6" style={{ marginBottom: '2rem' }}>
                 <h2 className="section-heading">Team Memory Networks</h2>
                 <button className="secondary-button">
                   View all teams
@@ -199,10 +199,10 @@ const DashboardEnterpriseSection = () => {
             </div>
 
             {/* Corporate Vaults */}
-            <div>
-              <div className="flex items-center justify-between mb-6">
+            <div style={{ marginTop: '2rem', marginBottom: '2rem' }}>
+              <div className="flex items-center justify-between" style={{ marginBottom: '2rem' }}>
                 <h2 className="section-heading">Shared Knowledge Vaults</h2>
-                <button className="primary-button">
+                <button className="primary-button" style={{ zIndex: 10 }}>
                   Create Enterprise Vault
                 </button>
               </div>
