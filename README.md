@@ -1,963 +1,393 @@
-<div align="center"><div align="center">
+<div align="center">
+  <img src="./public/logo.png" alt="De-MAPP Logo" width="120" height="120" style="border-radius: 20px; margin-bottom: 20px;" />
+</div>
 
-  <img src="./public/logo.png" alt="De-MAPP Logo" width="120" height="120" style="border-radius: 20px; margin-bottom: 20px;" />  <img src="./public/logo.png" alt="De-MAPP Logo" width="120" height="120" style="border-radius: 20px; margin-bottom: 20px;" />
+# De-MAPP – Decentralized Multi-Agent Persistent Protocol
 
-</div></div>
+<p align="center">
+  <img src="https://media.githubusercontent.com/media/demapp/demapp/main/assets/docs/demo.gif" width="100%" />
+</p>
 
-
-
-# De-MAPP – Decentralized Multi-Agent Persistent Protocol# De-MAPP – Decentralized Multi-Agent Persistent Protocol
-
-
-
-<p align="center"><p align="center">
-
-  <img src="https://img.shields.io/badge/License-MIT-blue.svg" alt="MIT License" />  <img src="https://img.shields.io/badge/License-MIT-blue.svg" alt="MIT License" />
-
-  <img src="https://img.shields.io/badge/Web3-Enabled-green.svg" alt="Web3 Enabled" />  <img src="https://img.shields.io/badge/Web3-Enabled-green.svg" alt="Web3 Enabled" />
-
-  <img src="https://img.shields.io/badge/Status-Development-orange.svg" alt="Development Status" />  <img src="https://img.shields.io/badge/Status-Development-orange.svg" alt="Development Status" />
-
-  <img src="https://img.shields.io/badge/Contract-Deployed-success.svg" alt="Contract Deployed" />  <img src="https://img.shields.io/badge/Contract-Deployed-success.svg" alt="Contract Deployed" />
-
-</p></p>
-
-
-
-<p align="center"><p align="center">
-
-  <a href="https://testnet.snowtrace.io/address/0x324F02AFD4ab534454d841E6dD83431518CcFABB" target="_blank">  <a href="https://testnet.snowtrace.io/address/0x324F02AFD4ab534454d841E6dD83431518CcFABB" target="_blank">
-
-    <img src="https://img.shields.io/badge/Smart_Contract-0x324F...CcFABB-red.svg" alt="Smart Contract Address" />    <img src="https://img.shields.io/badge/Smart_Contract-0x324F02AFD4ab534454d841E6dD83431518CcFABB-red.svg" alt="Smart Contract Address" />
-
-  </a>  </a>
-
-</p></p>
-
-
-
-<div align="center"><div align="center">
-
-<table><table>
-
-<tbody><tbody>
-
-<td align="center"><td align="center">
-
-<a href="#getting-started" target="_blank"><strong>Getting Started</strong></a><a href="#getting-started" target="_blank"><strong>Getting Started</strong></a>
-
-</td></td>
-
-<td align="center"><td align="center">
-
-<a href="#smart-contract" target="_blank"><strong>Smart Contract</strong></a><a href="#documentation" target="_blank"><strong>Documentation</strong></a>
-
-</td></td>
-
-<td align="center"><td align="center">
-
-<a href="#community" target="_blank"><strong>Community</strong></a><a href="#community" target="_blank"><strong>Community</strong></a>
-
-</td></td>
-
-<td align="center"><td align="center">
-
-<a href="#contributing" target="_blank"><strong>Contributing</strong></a><a href="#contributing" target="_blank"><strong>Contributing</strong></a>
-
-</td></td>
-
-<td align="center"><td align="center">
-
-<a href="#roadmap" target="_blank"><strong>Roadmap</strong></a><a href="#roadmap" target="_blank"><strong>Roadmap</strong></a>
-
-</td></td>
-
-</tbody></tbody>
-
-</table></table>
-
-</div></div>
-
-
+<div align="center">
+<table>
+<tbody>
+<td align="center">
+<a href="https://marketplace.visualstudio.com/items?itemName=demapp.protocol" target="_blank"><strong>Download Extension</strong></a>
+</td>
+<td align="center">
+<a href="https://discord.gg/demapp" target="_blank"><strong>Discord</strong></a>
+</td>
+<td align="center">
+<a href="https://www.reddit.com/r/demapp/" target="_blank"><strong>r/demapp</strong></a>
+</td>
+<td align="center">
+<a href="https://github.com/Priyank911/de-mapp/discussions/categories/feature-requests" target="_blank"><strong>Feature Requests</strong></a>
+</td>
+<td align="center">
+<a href="#getting-started" target="_blank"><strong>Getting Started</strong></a>
+</td>
+</tbody>
+</table>
+</div>
 
 Meet De-MAPP, a decentralized protocol that enables **persistent memory across AI agents**.
 
+Thanks to [Avalanche's high-performance blockchain infrastructure](https://www.avax.network/) and advanced cryptographic security, De-MAPP solves the fundamental problem of memory fragmentation in AI interactions. With distributed storage that maintains conversation context, cross-platform synchronization capabilities, and privacy-preserving encryption, De-MAPP creates a universal memory layer that any AI system can utilize. While traditional AI services operate in isolated environments where each conversation starts fresh, this protocol provides a persistent foundation where your interactions, preferences, and context follow you across every AI platform.
 
+1. **Connect your AI services** and establish persistent memory vaults secured by your Web3 wallet.
+2. **De-MAPP analyzes** your interaction patterns and conversation history to optimize memory allocation across distributed networks.
+3. **Once integrated**, De-MAPP can:
+    - Maintain conversation context that persists across sessions and platforms
+    - Enable cross-agent knowledge sharing while preserving privacy through encryption
+    - Synchronize preferences and learned behaviors across multiple AI services simultaneously
+    - Create verifiable audit trails for all memory operations on the blockchain
+4. **When tasks complete**, De-MAPP ensures all context is permanently stored in decentralized infrastructure, accessible only through your cryptographic keys.
 
-Thanks to blockchain infrastructure and cryptographic security, De-MAPP can handle complex memory persistence tasks across multiple AI platforms. With tools that let agents access shared context, maintain conversation history, and synchronize knowledge bases, it provides capabilities that go beyond traditional stateless AI interactions. De-MAPP leverages decentralized storage and smart contracts to create a universal memory layer that any AI system can utilize.Meet De-MAPP, a decentralized protocol that enables **persistent memory across AI agents**.Meet De-MAPP, a decentralized protocol that enables **persistent memory across AI agents**.
-
-
-
-1. **Connect your AI agents** and establish persistent memory vaults secured by your cryptographic keys.
-
-2. **De-MAPP analyzes** your interaction patterns, conversation history, and context requirements to optimize memory allocation across distributed storage networks.
-
-3. **Once connected**, De-MAPP can:Thanks to blockchain infrastructure and cryptographic security, De-MAPP can handle complex memory persistence tasks across multiple AI platforms. With tools that let agents access shared context, maintain conversation history, and synchronize knowledge bases, it provides capabilities that go beyond traditional stateless AI interactions. De-MAPP leverages decentralized storage and smart contracts to create a universal memory layer that any AI system can utilize.Thanks to blockchain infrastructure and cryptographic security, De-MAPP can handle complex memory persistence tasks across multiple AI platforms. With tools that let agents access shared context, maintain conversation history, and synchronize knowledge bases, it provides capabilities that go beyond traditional stateless AI interactions. De-MAPP leverages decentralized storage and smart contracts to create a universal memory layer that any AI system can utilize.
-
-    - Create and manage persistent memory contexts that survive across sessions and platforms
-
-    - Execute cross-agent knowledge sharing while maintaining privacy through encryption protocols
-
-    - Synchronize conversation states and preferences across multiple AI services simultaneously
-
-4. **When interactions complete**, De-MAPP ensures all context is preserved in decentralized storage, accessible through your secure authentication protocols.1. **Connect your AI agents** and establish persistent memory vaults secured by your cryptographic keys.1. **Connect your AI agents** and establish persistent memory vaults secured by your cryptographic keys.
-
-
-
-> **Note:** Use De-MAPP to transform ephemeral AI interactions into a connected, persistent intelligence network where your conversations and preferences follow you across any AI service.2. **De-MAPP analyzes** your interaction patterns, conversation history, and context requirements to optimize memory allocation across distributed storage networks.2. **De-MAPP analyzes** your interaction patterns, conversation history, and context requirements to optimize memory allocation across distributed storage networks.
-
-
-
----3. **Once connected**, De-MAPP can:3. **Once connected**, De-MAPP can:
-
-
-
-## Smart Contract    - Create and manage persistent memory contexts that survive across sessions and platforms    - Create and manage persistent memory contexts that survive across sessions and platforms
-
-
-
-De-MAPP's core functionality is powered by a deployed smart contract on the Avalanche Fuji Testnet, ensuring transparent and verifiable memory operations.    - Execute cross-agent knowledge sharing while maintaining privacy through encryption protocols    - Execute cross-agent knowledge sharing while maintaining privacy through encryption protocols
-
-
-
-### Contract Details    - Synchronize conversation states and preferences across multiple AI services simultaneously    - Synchronize conversation states and preferences across multiple AI services simultaneously
-
-
-
-<div align="center">4. **When interactions complete**, De-MAPP ensures all context is preserved in decentralized storage, accessible through your secure authentication protocols.4. **When interactions complete**, De-MAPP ensures all context is preserved in decentralized storage, accessible through your secure authentication protocols.
-
-
-
-| Property | Value |
-
-|----------|-------|
-
-| **Contract Address** | [`0x324F02AFD4ab534454d841E6dD83431518CcFABB`](https://testnet.snowtrace.io/address/0x324F02AFD4ab534454d841E6dD83431518CcFABB) |> **Note:** Use De-MAPP to transform ephemeral AI interactions into a connected, persistent intelligence network where your conversations and preferences follow you across any AI service.> **Note:** Use De-MAPP to transform ephemeral AI interactions into a connected, persistent intelligence network where your conversations and preferences follow you across any AI service.
-
-| **Network** | Avalanche Fuji Testnet |
-
-| **Contract Name** | DataStorage |
-
-| **Compiler Version** | Solidity ^0.8.0 |
-
-| **Verification Status** | ✅ Verified |------
-
-
-
-</div>
-
-
-
-### Key Functions## Core Architecture## Core Architecture
-
-
-
-- **`storeCID(string memory cid)`**: Store content identifiers with duplicate prevention
-
-- **`getCIDsByUser(address user)`**: Retrieve all CIDs associated with a user
-
-- **`cidExists(string memory cid)`**: Check if a CID already exists in storageDe-MAPP addresses fundamental limitations in current AI interaction models through a decentralized memory protocol that enables seamless context preservation and cross-platform agent communication.De-MAPP addresses fundamental limitations in current AI interaction models through a decentralized memory protocol that enables seamless context preservation and cross-platform agent communication.
-
-- **`getCIDCount()`**: Get total number of stored CIDs
-
-- **`getUser(string memory cid)`**: Get the owner of a specific CID
-
-
-
-### Contract Features### Memory Fragmentation Solution### Memory Fragmentation Solution
-
-
-
-- **Duplicate Prevention**: Ensures no duplicate CIDs are stored
-
-- **User Association**: Links CIDs to wallet addresses
-
-- **Gas Optimization**: Efficient storage patterns to minimize costsTraditional AI services operate in isolated environments where each interaction begins without context from previous sessions. De-MAPP creates a persistent memory layer that maintains conversation continuity across all supported AI platforms.Traditional AI services operate in isolated environments where each interaction begins without context from previous sessions. De-MAPP creates a persistent memory layer that maintains conversation continuity across all supported AI platforms.
-
-- **Event Logging**: Comprehensive event emission for transparency
-
-
+> **Note:** De-MAPP transforms isolated AI conversations into a connected intelligence network where your digital interactions accumulate value over time, creating a persistent AI companion that truly understands your needs.
 
 ---
 
-### Decentralized Data Ownership### Decentralized Data Ownership
 
-## Core Architecture
 
 
+<!-- Transparent pixel to create line break after floating image -->
+<img width="2000" height="0" src="https://github.com/user-attachments/assets/ee14e6f7-20b8-4391-9091-8e8e25561929"><br>
 
-De-MAPP addresses fundamental limitations in current AI interaction models through a decentralized memory protocol that enables seamless context preservation and cross-platform agent communication.
+<img align="left" width="370" src="https://github.com/user-attachments/assets/81be79a8-1fdb-4028-9129-5fe055e01e76">
 
-Unlike centralized AI services where your data remains in corporate silos, De-MAPP ensures complete user ownership through blockchain-based authentication and distributed storage protocols.Unlike centralized AI services where your data remains in corporate silos, De-MAPP ensures complete user ownership through blockchain-based authentication and distributed storage protocols.
+### Smart Contract
 
-### Memory Fragmentation Solution
+De-MAPP's core functionality is powered by a verified smart contract deployed on Avalanche Fuji testnet, ensuring transparent and immutable memory operations with minimal gas costs.
 
-
-
-Traditional AI services operate in isolated environments where each interaction begins without context from previous sessions. De-MAPP creates a persistent memory layer that maintains conversation continuity across all supported AI platforms.
-
-### Universal Interoperability### Universal Interoperability
-
-### Decentralized Data Ownership
-
-
-
-Unlike centralized AI services where your data remains in corporate silos, De-MAPP ensures complete user ownership through blockchain-based authentication and distributed storage protocols.
-
-De-MAPP establishes standardized memory protocols that enable any AI agent to access shared context while maintaining security through cryptographic access controls.De-MAPP establishes standardized memory protocols that enable any AI agent to access shared context while maintaining security through cryptographic access controls.
-
-### Universal Interoperability
-
-
-
-De-MAPP establishes standardized memory protocols that enable any AI agent to access shared context while maintaining security through cryptographic access controls.
-
-------
-
----
-
-
-
-## System Architecture
-
-## System Architecture## �️ System Architecture
-
-```mermaid
-
-graph TB
-
-    subgraph "User Layer"
-
-        U[User] --> W[Web3 Wallet]```mermaid```mermaid
-
-        U --> CL[Authentication]
-
-    endgraph TBgraph TB
-
-
-
-    subgraph "Frontend Layer"    subgraph "User Layer"    subgraph "User Layer"
-
-        LP[Landing Page] --> D[Dashboard]
-
-        D --> PS[Public Section]        U[User] --> W[Web3 Wallet]        U[👤 User] --> W[🔐 Web3 Wallet]
-
-        D --> PR[Private Section]
-
-        D --> E[Enterprise Section]        U --> CL[Authentication]        U --> CL[🔑 Clerk Auth]
-
-    end
-
-    end    end
-
-    subgraph "Authentication & Identity"
-
-        CL --> FS[Database]
-
-        W --> SC[Smart Contract]
-
-        FS --> UUID[UUID Generation]    subgraph "Frontend Layer"    subgraph "Frontend Layer"
-
-    end
-
-        LP[Landing Page] --> D[Dashboard]        LP[🏠 Landing Page] --> D[📊 Dashboard]
-
-    subgraph "Decentralized Storage"
-
-        SC --> IPFS[Distributed Storage]        D --> PS[Public Section]        D --> PS[🌍 Public Section]
-
-        SC --> AR[Permanent Archive]
-
-        IPFS --> LIT[Encryption Protocol]        D --> PR[Private Section]        D --> PR[🔒 Private Section]
-
-        AR --> LIT
-
-    end        D --> E[Enterprise Section]        D --> E[🏢 Enterprise Section]
-
-
-
-    subgraph "Blockchain Layer"    end    end
-
-        SC --> AVAX[Blockchain Network]
-
-        AVAX --> VF[Vault Factory]
-
-        VF --> VM[Memory Vaults]
-
-    end    subgraph "Authentication & Identity"    subgraph "Authentication & Identity"
-
-
-
-    subgraph "AI Integration"        CL --> FS[Database]        CL --> FS[🔥 Firestore]
-
-        API[AI Agents API] --> GPT[Language Model A]
-
-        API --> CLAUDE[Language Model B]        W --> SC[Smart Contract]        W --> SC[📋 Smart Contract]
-
-        API --> COPILOT[Code Assistant]
-
-        API --> GEMINI[Multimodal AI]        FS --> UUID[UUID Generation]        FS --> UUID[🆔 UUID Generation]
-
-    end
-
-    end    end
-
-    D --> API
-
-    VM --> API
-
-    LIT --> API
-
-    subgraph "Decentralized Storage"    subgraph "Decentralized Storage"
-
-    style U fill:#e1f5fe
-
-    style AVAX fill:#ff5722,color:#fff        SC --> IPFS[Distributed Storage]        SC --> IPFS[🌐 IPFS Network]
-
-    style IPFS fill:#65c5db,color:#fff
-
-    style AR fill:#9c27b0,color:#fff        SC --> AR[Permanent Archive]        SC --> AR[📚 Arweave]
-
-    style LIT fill:#4caf50,color:#fff
-
-```        IPFS --> LIT[Encryption Protocol]        IPFS --> LIT[🔐 Lit Protocol]
-
-
-
----        AR --> LIT        AR --> LIT
-
-
-
-## User Journey Flow    end    end
-
-
-
-```mermaid
-
-sequenceDiagram
-
-    participant U as User    subgraph "Blockchain Layer"    subgraph "Blockchain Layer"
-
-    participant LP as Landing Page
-
-    participant C as Authentication        SC --> AVAX[Blockchain Network]        SC --> AVAX[🏔️ Avalanche Fuji]
-
-    participant FS as Database
-
-    participant D as Dashboard        AVAX --> VF[Vault Factory]        AVAX --> VF[🗃️ Vault Factory]
-
-    participant W as Wallet
-
-    participant SC as Smart Contract        VF --> VM[Memory Vaults]        VF --> VM[💾 Memory Vaults]
-
-    participant IPFS as Distributed Storage
-
-    end    end
-
-    U->>LP: Clicks "Explore Protocol"
-
-    LP->>C: Initiates authentication
-
-    C->>U: Authentication flow
-
-    U->>C: Signs in    subgraph "AI Integration"    subgraph "AI Integration"
-
-    C->>FS: Stores user data + UUID
-
-            API[AI Agents API] --> GPT[Language Model A]        API[🤖 AI Agents API] --> GPT[💬 ChatGPT]
-
-    Note over FS: User Record Created
-
-    FS-->>FS: Generate UUID: 1ce60864-f5eb...        API --> CLAUDE[Language Model B]        API --> CLAUDE[🧠 Claude]
-
-    
-
-    C->>D: Redirect to /dashboard/:uuid        API --> COPILOT[Code Assistant]        API --> COPILOT[👨‍💻 GitHub Copilot]
-
-    D->>FS: Fetch user context
-
-    FS-->>D: Return user data        API --> GEMINI[Multimodal AI]        API --> GEMINI[💎 Gemini]
-
-    
-
-    D->>U: Prompt wallet connection    end    end
-
-    U->>W: Connect Web3 wallet
-
-    W->>SC: Initialize user vault
-
-    SC->>IPFS: Store encrypted memory
-
-        D --> API    D --> API
-
-    Note over U,IPFS: Memory persistence activated
-
-```    VM --> API    VM --> API
-
-
-
----    LIT --> API    LIT --> API
-
-
-
-## Dashboard Architecture
-
-
-
-### Navigation System    style U fill:#e1f5fe    style U fill:#e1f5fe
-
-- **Header**: Global controls, user profile, connection status
-
-- **Sidebar**: Quick access to all memory sections    style AVAX fill:#ff5722,color:#fff    style AVAX fill:#ff5722,color:#fff
-
-
-
-### Memory Vault Structure    style IPFS fill:#65c5db,color:#fff    style IPFS fill:#65c5db,color:#fff
-
-
-
-#### Public Memory Vault    style AR fill:#9c27b0,color:#fff    style AR fill:#9c27b0,color:#fff
-
-- Shared knowledge and collaborative insights
-
-- Community-driven training data    style LIT fill:#4caf50,color:#fff    style LIT fill:#4caf50,color:#fff
-
-- Open-source memory contributions
-
-``````
-
-#### Private Memory Vault  
-
-- Personal interaction history
-
-- Private preferences and configurations
-
-- Encrypted with user-controlled keys------
-
-
-
-#### Enterprise Memory Vault
-
-- Organization-specific knowledge base
-
-- Team collaboration memory## User Journey Flow## ✨ Revolutionary Features
-
-- Role-based access controls
-
-
-
-### Advanced Features
-
-- Interactive memory graph visualizations```mermaid### 🧠 **Persistent AI Memory**
-
-- Comprehensive audit trails and analytics  
-
-- Extensible plugin integration systemsequenceDiagramYour conversations, preferences, and context persist across all AI interactions, forever.
-
-
-
----    participant U as User
-
-
-
-## Competitive Advantage Matrix    participant LP as Landing Page### 🔗 **Cross-Agent Recall**
-
-
-
-<div align="center">    participant C as AuthenticationOne unified memory accessible by ChatGPT, Claude, Copilot, and any AI service you choose.
-
-
-
-| **Capability** | **De-MAPP** | **Traditional AI A** | **Traditional AI B** | **Code Assistant** | **Multimodal AI** |    participant FS as Database
-
-|:---|:---:|:---:|:---:|:---:|:---:|
-
-| **Persistent Memory** | ✅ Permanent | ❌ Session-only | ❌ Session-only | ❌ Session-only | ❌ Session-only |    participant D as Dashboard### � **True Decentralization**
-
-| **Decentralized Storage** | ✅ Distributed | ❌ Centralized | ❌ Centralized | ❌ Centralized | ❌ Centralized |
-
-| **User Data Ownership** | ✅ User Controlled | ❌ Corporate | ❌ Corporate | ❌ Corporate | ❌ Corporate |    participant W as WalletBuilt on Avalanche blockchain with IPFS storage - no single point of failure.
-
-| **Cross-Platform Recall** | ✅ Universal | ❌ Isolated | ❌ Isolated | ❌ Isolated | ❌ Isolated |
-
-| **Plugin Ecosystem** | ✅ Extensible | 🟡 Limited | 🟡 Limited | 🟡 Limited | 🟡 Limited |    participant SC as Smart Contract
-
-| **Blockchain Auditability** | ✅ Transparent | ❌ Opaque | ❌ Opaque | ❌ Opaque | ❌ Opaque |
-
-| **Interoperability** | ✅ Protocol-based | ❌ Proprietary | ❌ Proprietary | ❌ Proprietary | ❌ Proprietary |    participant IPFS as Distributed Storage### 👑 **Complete Data Ownership**
-
-
-
-</div>You control your data with Web3 wallet authentication and cryptographic keys.
-
-
-
----    U->>LP: Clicks "Explore Protocol"
-
-
-
-## Getting Started    LP->>C: Initiates authentication### 🚀 **Seamless Integration**
-
-
-
-### Prerequisites    C->>U: Authentication flowPlugin ecosystem for VS Code, Chrome, and major AI platforms.
-
-
-
-- Modern web browser with Web3 capability    U->>C: Signs in
-
-- Compatible digital wallet (MetaMask, Core Wallet, etc.)
-
-- Node.js 18+ for development    C->>FS: Stores user data + UUID### 🔍 **Full Transparency**
-
-
-
-### Installation    Every memory interaction is auditable on the blockchain.
-
-
-
-```bash    Note over FS: User Record Created
-
-# Clone the repository
-
-git clone https://github.com/Priyank911/de-mapp.git    FS-->>FS: Generate UUID: 1ce60864-f5eb...---
-
-
-
-# Navigate to project directory    
-
-cd de-mapp
-
-    C->>D: Redirect to /dashboard/:uuid## �️ Technology Stack
-
-# Install dependencies
-
-npm install    D->>FS: Fetch user context
-
-
-
-# Configure environment variables    FS-->>D: Return user data<div align="center">
-
-cp .env.example .env
-
-    
-
-# Start development server
-
-npm run dev    D->>U: Prompt wallet connection| Layer | Technology | Purpose |
-
-```
-
-    U->>W: Connect Web3 wallet|-------|------------|---------|
-
-### Quick Setup
-
-    W->>SC: Initialize user vault| **Frontend** | React + TypeScript + Vite | Modern, type-safe UI development |
-
-1. **Authentication**: Connect using your preferred method
-
-2. **Wallet Integration**: Link your Web3 wallet for secure access    SC->>IPFS: Store encrypted memory| **Styling** | Tailwind CSS | Utility-first responsive design |
-
-3. **Contract Interaction**: The app automatically connects to the deployed smart contract
-
-4. **Vault Creation**: Initialize your personal memory vault    | **Authentication** | Clerk + Google OAuth | Secure, scalable user management |
-
-5. **Agent Connection**: Configure AI agent integrations
-
-    Note over U,IPFS: Memory persistence activated| **Database** | Firebase Firestore | Real-time NoSQL data storage |
-
----
-
-```| **Blockchain** | Avalanche (Fuji Testnet) | Smart contract deployment |
-
-## Development
-
-| **Storage** | IPFS + Arweave | Decentralized, permanent data storage |
-
-### Architecture Overview
-
----| **Security** | Lit Protocol | Decentralized key management |
-
-De-MAPP is built on a modular architecture supporting:
-
-| **Identity** | Web3 Wallets | User-controlled authentication |
-
-- **Frontend**: Modern web application with responsive design
-
-- **Authentication**: Secure user management and session handling  ## Dashboard Architecture
-
-- **Blockchain Integration**: Smart contract interactions and wallet connectivity
-
-- **Storage Layer**: Distributed content addressing and retrieval</div>
-
-- **API Gateway**: Standardized interfaces for AI agent integration
-
-### Navigation System
-
-### Technology Foundation
-
-- **Header**: Global controls, user profile, connection status---
-
-| Component | Purpose |
-
-|-----------|---------|- **Sidebar**: Quick access to all memory sections
-
-| **Frontend Framework** | Modern UI development with type safety |
-
-| **Styling System** | Utility-first responsive design |## 🔐 User Journey Flow
-
-| **Authentication** | Secure, scalable user management |
-
-| **Database** | Real-time data synchronization |### Memory Vault Structure
-
-| **Blockchain** | Smart contract deployment and execution |
-
-| **Storage** | Decentralized, permanent data persistence |```mermaid
-
-| **Security** | Distributed key management and encryption |
-
-#### Public Memory VaultsequenceDiagram
-
----
-
-- Shared knowledge and collaborative insights    participant U as 👤 User
-
-## Protocol Vision
-
-- Community-driven training data    participant LP as 🏠 Landing Page
-
-De-MAPP represents more than a memory management system. It establishes a foundational protocol for:
-
-- Open-source memory contributions    participant C as 🔑 Clerk Auth
-
-- **Multi-agent collaboration** across platforms and services
-
-- **User-sovereign data ownership** through cryptographic guarantees      participant FS as 🔥 Firestore
-
-- **Persistent intelligence layers** for the decentralized AI economy
-
-#### Private Memory Vault      participant D as 📊 Dashboard
-
-Think of De-MAPP as the foundational memory infrastructure for AI interactions—open, decentralized, and universally accessible.
-
-- Personal interaction history    participant W as 🔐 Wallet
-
----
-
-- Private preferences and configurations    participant SC as 📋 Smart Contract
-
-## Roadmap
-
-- Encrypted with user-controlled keys    participant IPFS as 🌐 IPFS
-
-- ✅ Core authentication and user management
-
-- ✅ Database integration and UUID generation
-
-- ✅ Smart contract deployment on Avalanche Fuji
-
-- 🚧 Dashboard interface and user experience#### Enterprise Memory Vault    U->>LP: Clicks "Explore Protocol"
-
-- 🚧 Blockchain integration and wallet connectivity
-
-- 🔜 Distributed storage implementation- Organization-specific knowledge base    LP->>C: Initiates authentication
-
-- 🔜 Encryption and key management protocols
-
-- 🔜 AI agent integration APIs- Team collaboration memory    C->>U: Google OAuth flow
-
-- 🔜 Plugin ecosystem and extensions
-
-- Role-based access controls    U->>C: Signs in with Google
-
----
-
-    C->>FS: Stores user data + UUID
-
-## Contributing
-
-### Advanced Features    
-
-We welcome contributions from developers, designers, and AI researchers. Check our [Contributing Guidelines](CONTRIBUTING.md) to get started, or join our community discussions to learn about current development priorities.
-
-- Interactive memory graph visualizations    Note over FS: User Record Created
-
-### Development Areas
-
-- Comprehensive audit trails and analytics      FS-->>FS: Generate UUID: 1ce60864-f5eb...
-
-- **Protocol Development**: Core memory persistence algorithms
-
-- **AI Integration**: Agent compatibility and API design- Extensible plugin integration system    
-
-- **Security Research**: Cryptographic protocols and key management
-
-- **User Experience**: Interface design and interaction patterns    C->>D: Redirect to /dashboard/:uuid
-
-- **Documentation**: Technical guides and implementation examples
-
----    D->>FS: Fetch user context
-
----
-
-    FS-->>D: Return user data
-
-## Community
-
-## Competitive Advantage Matrix    
-
-- **GitHub Discussions**: Technical discussions and feature requests
-
-- **Documentation**: Comprehensive guides and API references    D->>U: Prompt wallet connection
-
-- **Developer Resources**: Integration examples and best practices
-
-<div align="center">    U->>W: Connect Web3 wallet
-
----
-
-    W->>SC: Initialize user vault
-
-## License
-
-| **Capability** | **De-MAPP** | **Traditional AI A** | **Traditional AI B** | **Code Assistant** | **Multimodal AI** |    SC->>IPFS: Store encrypted memory
-
-MIT License - see [LICENSE](LICENSE) for details
-
-|:---|:---:|:---:|:---:|:---:|:---:|    
-
----
-
-| **Persistent Memory** | ✅ Permanent | ❌ Session-only | ❌ Session-only | ❌ Session-only | ❌ Session-only |    Note over U,IPFS: Memory persistence activated! 🎉
-
-## Contact
-
-| **Decentralized Storage** | ✅ Distributed | ❌ Centralized | ❌ Centralized | ❌ Centralized | ❌ Centralized |```
-
-For technical questions and collaboration opportunities, visit our [GitHub repository](https://github.com/Priyank911/de-mapp) or open an issue for specific inquiries.
-
-| **User Data Ownership** | ✅ User Controlled | ❌ Corporate | ❌ Corporate | ❌ Corporate | ❌ Corporate |
-
----
-
-| **Cross-Platform Recall** | ✅ Universal | ❌ Isolated | ❌ Isolated | ❌ Isolated | ❌ Isolated |---
-
-<p align="center"><strong>De-MAPP: Persistent Memory for the AI Era</strong></p>
-| **Plugin Ecosystem** | ✅ Extensible | 🟡 Limited | 🟡 Limited | 🟡 Limited | 🟡 Limited |
-
-| **Blockchain Auditability** | ✅ Transparent | ❌ Opaque | ❌ Opaque | ❌ Opaque | ❌ Opaque |## 📊 Dashboard Architecture
-
-| **Interoperability** | ✅ Protocol-based | ❌ Proprietary | ❌ Proprietary | ❌ Proprietary | ❌ Proprietary |
-
-### 🎛️ **Navigation System**
-
-</div>- **Header**: Global controls, user profile, wallet status
-
-- **Sidebar**: Quick access to all memory sections
-
----
-
-### 🏗️ **Memory Sections**
-
-## Getting Started
-
-#### 🌍 **Public Memory Vault**
-
-### Prerequisites- Shared knowledge and collaborative insights
-
-- Community-driven AI training data
-
-- Modern web browser with Web3 capability- Open-source memory contributions
-
-- Compatible digital wallet
-
-- Node.js 18+ for development#### 🔒 **Private Memory Vault**  
-
-- Personal AI interaction history
-
-### Installation- Private preferences and configurations
-
-- Encrypted with your wallet keys
-
-```bash
-
-# Clone the repository#### 🏢 **Enterprise Memory Vault**
-
-git clone https://github.com/Priyank911/de-mapp.git- Organization-specific knowledge base
-
-- Team collaboration memory
-
-# Install dependencies- Role-based access controls
-
-npm install
-
-### 📈 **Advanced Features** *(Coming Soon)*
-
-# Configure environment variables- Interactive memory graph visualizations
-
-cp .env.example .env- Comprehensive audit trails and analytics  
-
-- Extensible plugin integration system
-
-# Start development server
-
-npm run dev---
-
-```
-
-## ⚡ Competitive Advantage Matrix
-
-### Quick Setup
+**Contract Details:**
 
 <div align="center">
 
-1. **Authentication**: Connect using your preferred method
+| Property | Value |
+|----------|-------|
+| **Contract Address** | [`0x324F02AFD4ab534454d841E6dD83431518CcFABB`](https://testnet.snowtrace.io/address/0x324F02AFD4ab534454d841E6dD83431518CcFABB) |
+| **Network** | Avalanche Fuji Testnet |
+| **Contract Name** | DataStorage |
+| **Compiler Version** | Solidity ^0.8.0 |
+| **Verification Status** | Fully Verified |
 
-2. **Wallet Integration**: Link your Web3 wallet for secure access| **Capability** | **🧠 De-MAPP** | **🤖 ChatGPT** | **🧠 Claude** | **👨‍💻 Copilot** | **💎 Gemini** |
+</div>
 
-3. **Vault Creation**: Initialize your personal memory vault|:---|:---:|:---:|:---:|:---:|:---:|
+**Core Functions:**
+- `storeCID(string memory cid)`: Store content identifiers with automatic duplicate prevention
+- `getCIDsByUser(address user)`: Retrieve all memory fragments for authenticated users
+- `cidExists(string memory cid)`: Check content existence for efficient storage management
+- `getCIDCount()`: Global network statistics and usage metrics
+- `getUser(string memory cid)`: Ownership verification for access control
 
-4. **Agent Connection**: Configure AI agent integrations| **Persistent Memory** | ✅ Permanent | ❌ Session-only | ❌ Session-only | ❌ Session-only | ❌ Session-only |
+The contract implements gas-optimized storage patterns and comprehensive event emission for complete operation transparency.
 
-| **Decentralized Storage** | ✅ IPFS/Arweave | ❌ Centralized | ❌ Centralized | ❌ Centralized | ❌ Centralized |
+<!-- Transparent pixel to create line break after floating image -->
+<img width="2000" height="0" src="https://github.com/user-attachments/assets/ee14e6f7-20b8-4391-9091-8e8e25561929"><br>
 
----| **User Data Ownership** | ✅ Web3 Wallet | ❌ Corporate | ❌ Corporate | ❌ Corporate | ❌ Corporate |
+<img align="right" width="400" src="https://github.com/user-attachments/assets/c5977833-d9b8-491e-90f9-05f9cd38c588">
 
-| **Cross-Platform Recall** | ✅ Universal | ❌ Isolated | ❌ Isolated | ❌ Isolated | ❌ Isolated |
+### Memory Vault Management
 
-## Development| **Plugin Ecosystem** | ✅ Extensible | 🟡 Limited | 🟡 Limited | 🟡 Limited | 🟡 Limited |
+De-MAPP creates and manages persistent memory vaults directly through your connected services, presenting you with a comprehensive view of all stored interactions. You can organize, search, and analyze your AI conversation history with advanced filtering and visualization tools.
 
-| **Blockchain Auditability** | ✅ Transparent | ❌ Opaque | ❌ Opaque | ❌ Opaque | ❌ Opaque |
+The system automatically categorizes conversations by topic, sentiment, and importance, while maintaining complete user control over data organization and access permissions. All memory operations are recorded in your vault's timeline, providing an easy way to track and manage your digital interactions.
 
-### Architecture Overview| **Interoperability** | ✅ Protocol-based | ❌ Proprietary | ❌ Proprietary | ❌ Proprietary | ❌ Proprietary |
+**Vault Features:**
+- Automatic conversation categorization and tagging
+- Advanced search across all stored interactions
+- Visual timeline of memory operations and access patterns
+- Granular privacy controls with selective sharing capabilities
+- Integration with existing productivity workflows
+
+<!-- Transparent pixel to create line break after floating image -->
+<img width="2000" height="0" src="https://github.com/user-attachments/assets/ee14e6f7-20b8-4391-9091-8e8e25561929"><br>
+
+<img align="left" width="370" src="https://github.com/user-attachments/assets/bc2e85ba-dfeb-4fe6-9942-7cfc4703cbe5">
+
+### Cross-Platform Synchronization
+
+With De-MAPP's universal memory protocol, context and preferences seamlessly transfer between AI services. Start a conversation in ChatGPT, continue it in Claude, and reference the context in GitHub Copilot – all while maintaining perfect continuity.
+
+The protocol handles real-time synchronization of conversation states, learned preferences, and contextual relationships across all connected platforms. Advanced conflict resolution ensures consistency when multiple services access the same memory simultaneously.
+
+**Synchronization Capabilities:**
+- Real-time context sharing across all AI platforms
+- Intelligent conflict resolution for concurrent access
+- Preference learning that improves recommendations over time
+- Cross-platform conversation threading and relationship mapping
+- Automatic backup and redundancy across multiple storage nodes
+
+<!-- Transparent pixel to create line break after floating image -->
+<img width="2000" height="0" src="https://github.com/user-attachments/assets/ee14e6f7-20b8-4391-9091-8e8e25561929"><br>
+
+<img align="right" width="350" src="https://github.com/user-attachments/assets/ac0efa14-5c1f-4c26-a42d-9d7c56f5fadd">
+
+### "Configure memory for..."
+
+De-MAPP supports extensible memory configurations tailored to specific use cases. The protocol can be customized for different workflows, from software development and creative writing to research and business intelligence.
+
+Just specify your use case and De-MAPP will automatically configure optimal memory patterns, storage strategies, and synchronization rules. These configurations can be shared with teams or published as templates for the community.
+
+**Example Configurations:**
+- **Software Development**: Code context, documentation references, and debugging sessions
+- **Content Creation**: Research notes, writing drafts, and creative iteration tracking  
+- **Business Intelligence**: Meeting summaries, decision tracking, and strategic planning
+- **Academic Research**: Literature reviews, experiment tracking, and collaboration notes
+
+<!-- Transparent pixel to create line break after floating image -->
+<img width="2000" height="0" src="https://github.com/user-attachments/assets/ee14e6f7-20b8-4391-9091-8e8e25561929"><br>
+
+<img align="left" width="360" src="https://github.com/user-attachments/assets/7fdf41e6-281a-4b4b-ac19-020b838b6970">
+
+### Advanced Context Integration
+
+**`@commit`:** Push your current conversation context to IPFS for permanent storage.
+
+**`@mapp : in`:** Fetch your stored context from IPFS and create virtual memory for the agent.
+
+**`@help`:** Display help documentation and available commands for De-MAPP protocol.
 
 
+<!-- Transparent pixel to create line break after floating image -->
+<img width="2000" height="0" src="https://github.com/user-attachments/assets/ee14e6f7-20b8-4391-9091-8e8e25561929"><br>
 
-De-MAPP is built on a modular architecture supporting:</div>
+<img align="right" width="350" src="https://github.com/user-attachments/assets/140c8606-d3bf-41b9-9a1f-4dbf0d4c90cb">
 
+### Memory Snapshots
 
+As you interact with AI services, De-MAPP automatically creates memory snapshots at key conversation milestones. You can use the 'Compare' feature to see how your AI interactions have evolved over time, and the 'Restore' function to revisit previous conversation states.
 
-- **Frontend**: Modern web application with responsive design---
+For complex projects spanning multiple AI platforms, you can create manual snapshots before major transitions, then restore to those points if you want to explore alternative approaches. This enables safe experimentation with different AI strategies while maintaining your progress.
 
-- **Authentication**: Secure user management and session handling  
+**Snapshot Features:**
+- Automatic milestone detection and snapshot creation
+- Manual snapshot creation for important conversation states
+- Cross-platform comparison showing interaction evolution
+- Selective restoration of conversation contexts or complete memory states
+- Collaborative snapshots for team-based AI workflows
 
-- **Blockchain Integration**: Smart contract interactions and wallet connectivity## 🌍 Vision
+<!-- Transparent pixel to create line break after floating image -->
+<img width="2000" height="0" src="https://github.com/user-attachments/assets/ee14e6f7-20b8-4391-9091-8e8e25561929"><br>
 
-- **Storage Layer**: Distributed content addressing and retrieval
+## System Architecture
 
-- **API Gateway**: Standardized interfaces for AI agent integrationDe-MAPP is more than a dashboard. It’s an AI-native protocol that:
+```mermaid
+graph TB
+    subgraph "User Layer"
+        U[User] --> W[Web3 Wallet]
+        U --> CL[Clerk Authentication]
+    end
 
-- Enables multi-agent collaboration
+    subgraph "Frontend Layer"
+        LP[Landing Page] --> D[Dashboard]
+        D --> PS[Public Vault]
+        D --> PR[Private Vault]
+        D --> E[Enterprise Vault]
+    end
 
-### Technology Foundation- Ensures memory ownership by users
+    subgraph "Authentication & Identity"
+        CL --> FS[Firestore Database]
+        W --> SC[Smart Contract]
+        FS --> UUID[UUID Generation]
+    end
 
-- Creates a persistent intelligence layer for the AI economy
+    subgraph "Decentralized Storage"
+        SC --> IPFS[IPFS Network]
+        SC --> AR[Arweave Archive]
+        IPFS --> LIT[Lit Protocol]
+        AR --> LIT
+    end
 
-| Component | Purpose |
+    subgraph "Blockchain Layer"
+        SC --> AVAX[Avalanche Fuji]
+        AVAX --> VF[Vault Factory]
+        VF --> VM[Memory Vaults]
+    end
 
-|-----------|---------|> Think of it as the *“file system for AI memory”* — open, decentralized, and portable.
+    subgraph "AI Integration"
+        API[AI Gateway] --> GPT[ChatGPT]
+        API --> CLAUDE[Claude]
+        API --> COPILOT[GitHub Copilot]
+        API --> GEMINI[Gemini]
+    end
 
-| **Frontend Framework** | Modern UI development with type safety |
+    D --> API
+    VM --> API
+    LIT --> API
 
-| **Styling System** | Utility-first responsive design |---
-
-| **Authentication** | Secure, scalable user management |
-
-| **Database** | Real-time data synchronization |## 📌 Roadmap
-
-| **Blockchain** | Smart contract deployment and execution |
-
-| **Storage** | Decentralized, permanent data persistence |- ✅ Landing page + Clerk Auth
-
-| **Security** | Distributed key management and encryption |- ✅ Firestore UUID integration
-
-- 🚧 Dashboard integration
-
----- 🚧 Wallet + Avalanche contract linking
-
-- 🔜 IPFS/Arweave storage
-
-## Protocol Vision- 🔜 Lit Protocol key management
-
-- 🔜 Plugins (VS Code, Chrome)
-
-De-MAPP represents more than a memory management system. It establishes a foundational protocol for:
+    style U fill:#e1f5fe
+    style AVAX fill:#ff5722,color:#fff
+    style IPFS fill:#65c5db,color:#fff
+    style AR fill:#9c27b0,color:#fff
+    style LIT fill:#4caf50,color:#fff
+```
 
 ---
 
-- **Multi-agent collaboration** across platforms and services
+## User Journey Flow
 
-- **User-sovereign data ownership** through cryptographic guarantees  ## 🤝 Contributing
+```mermaid
+sequenceDiagram
+    participant U as User
+    participant LP as Landing Page
+    participant C as Clerk Auth
+    participant FS as Firestore
+    participant D as Dashboard
+    participant W as Wallet
+    participant SC as Smart Contract
+    participant IPFS as IPFS Storage
 
-- **Persistent intelligence layers** for the decentralized AI economy
-
-We welcome contributions!  
-
-Think of De-MAPP as the foundational memory infrastructure for AI interactions—open, decentralized, and universally accessible.Open issues, suggest features, or submit PRs to help build the future of decentralized AI memory.
-
-
-
-------
-
-
-
-## Roadmap## 📄 License
-
-
-
-- ✅ Core authentication and user managementMIT
-
-- ✅ Database integration and UUID generation
-
-- 🚧 Dashboard interface and user experience---
-
-- 🚧 Blockchain integration and smart contracts
-
-- 🔜 Distributed storage implementation## 📬 Contact
-
-- 🔜 Encryption and key management protocols
-
-- 🔜 AI agent integration APIsFor questions, reach out via [GitHub Issues](https://github.com/Priyank911/DEmapp/issues)
-
-- 🔜 Plugin ecosystem and extensions
+    U->>LP: Access protocol interface
+    LP->>C: Initiate authentication
+    C->>U: Present auth options
+    U->>C: Complete authentication
+    C->>FS: Store user profile + UUID
+    
+    Note over FS: User Profile Created
+    FS-->>FS: Generate UUID: 1ce60864-f5eb...
+    
+    C->>D: Redirect to dashboard
+    D->>FS: Fetch user context
+    FS-->>D: Return user data
+    
+    D->>U: Prompt wallet connection
+    U->>W: Connect Web3 wallet
+    W->>SC: Initialize memory vault
+    SC->>IPFS: Deploy encrypted storage
+    
+    Note over U,IPFS: Memory persistence activated
+```
 
 ---
 
+## Technology Stack
+
+<div align="center">
+
+| Layer | Technology | Purpose |
+|-------|------------|---------|
+| **Frontend** | React + TypeScript + Vite | Modern UI development with type safety |
+| **Styling** | Tailwind CSS | Utility-first responsive design system |
+| **Authentication** | Clerk + OAuth 2.0 | Secure user management with Web3 integration |
+| **Database** | Firebase Firestore | Real-time data synchronization |
+| **Blockchain** | Avalanche Fuji Testnet | Smart contract deployment and execution |
+| **Storage** | IPFS + Arweave | Distributed and permanent data storage |
+| **Encryption** | Lit Protocol | Decentralized key management |
+| **Identity** | Web3 Wallets | User-controlled cryptographic authentication |
+
+</div>
+
 ---
 
-<p align="center"><b>De-MAPP = Your AI memory, decentralized.</b></p>
+## Competitive Advantage Matrix
+
+<div align="center">
+
+| **Capability** | **De-MAPP** | **ChatGPT** | **Claude** | **GitHub Copilot** | **Google Gemini** |
+|:---|:---:|:---:|:---:|:---:|:---:|
+| **Persistent Memory** | **Permanent** | Session-only | Session-only | Session-only | Session-only |
+| **Cross-Platform Sync** | **Universal** | Isolated | Isolated | Isolated | Isolated |
+| **Data Ownership** | **User Controlled** | Corporate | Corporate | Corporate | Corporate |
+| **Decentralized Storage** | **Distributed** | Centralized | Centralized | Centralized | Centralized |
+| **Privacy Guarantees** | **Cryptographic** | Server-side | Server-side | Server-side | Server-side |
+| **Interoperability** | **Protocol-based** | API Limited | API Limited | API Limited | API Limited |
+| **Auditability** | **Blockchain Verified** | Opaque | Opaque | Opaque | Opaque |
+| **Extensibility** | **Unlimited** | Restricted | Restricted | Restricted | Restricted |
+
+</div>
+
+**Key Differentiators:** While existing AI services provide powerful capabilities within their platforms, De-MAPP creates the missing infrastructure layer that enables true AI memory persistence and cross-platform intelligence. This fundamental difference transforms how users interact with AI systems, creating value that compounds over time rather than resetting with each session.
+
+---
+
+## Getting Started
+
+### Prerequisites
+
+- Node.js 18+ with npm/yarn
+- Modern web browser with Web3 support
+- Compatible wallet (MetaMask, WalletConnect, etc.)
+
+### Installation
+
+```bash
+# Clone the repository
+git clone https://github.com/Priyank911/de-mapp.git
+cd de-mapp
+
+# Install dependencies
+npm install
+
+# Configure environment variables
+cp .env.example .env
+
+# Start development server
+npm run dev
+```
+
+### Quick Setup
+
+1. **Authentication**: Sign in using Google OAuth or connect your Web3 wallet
+2. **Profile Creation**: Complete the onboarding flow and generate your unique UUID
+3. **Memory Vault**: Initialize your personal memory vault through smart contract interaction
+4. **AI Integration**: Connect your preferred AI services through the settings panel
+5. **Start Using**: Begin conversations knowing that context will persist across all platforms
+
+### Configuration
+
+```javascript
+// Environment variables
+VITE_AVALANCHE_RPC_URL=https://api.avax-test.network/ext/bc/C/rpc
+VITE_CONTRACT_ADDRESS=0x324F02AFD4ab534454d841E6dD83431518CcFABB
+VITE_IPFS_GATEWAY=https://gateway.pinata.cloud
+VITE_CLERK_PUBLISHABLE_KEY=your_clerk_key
+VITE_FIREBASE_PROJECT_ID=your_project_id
+```
+
+---
+
+## Roadmap
+
+**Current Development**
+- Dashboard interface with real-time blockchain integration
+- Web3 wallet connection and smart contract interaction
+- Basic IPFS storage implementation for content addressing
+
+**Next Phase**
+- Lit Protocol integration for advanced encryption and key management
+- AI service API implementations for memory synchronization
+- Browser extension for seamless integration with existing workflows
+
+**Future Development**
+- Mobile applications for iOS and Android platforms
+- Enterprise features with team collaboration and management tools
+- Advanced analytics and AI interaction pattern recognition
+- Mainnet deployment with production-grade security audits
+
+---
+
 ## Contributing
 
-We welcome contributions from developers, designers, and AI researchers. Check our [Contributing Guidelines](CONTRIBUTING.md) to get started, or join our community discussions to learn about current development priorities.
+We welcome contributions from developers, designers, and AI enthusiasts. Start with our [Contributing Guide](CONTRIBUTING.md) to understand the development workflow and coding standards.
 
-### Development Areas
+**Development Areas:**
+- **Protocol Development**: Core memory persistence algorithms and blockchain integration
+- **Frontend Development**: React components, user experience, and interface design
+- **AI Integration**: API implementations and cross-platform synchronization
+- **Security**: Smart contract auditing, encryption protocols, and privacy features
+- **Documentation**: Technical guides, tutorials, and API documentation
 
-- **Protocol Development**: Core memory persistence algorithms
-- **AI Integration**: Agent compatibility and API design
-- **Security Research**: Cryptographic protocols and key management
-- **User Experience**: Interface design and interaction patterns
-- **Documentation**: Technical guides and implementation examples
-
----
-
-## Community
-
-- **GitHub Discussions**: Technical discussions and feature requests
-- **Documentation**: Comprehensive guides and API references
-- **Developer Resources**: Integration examples and best practices
+Join our community on [Discord](https://discord.gg/demapp) to collaborate with other contributors or explore opportunities on our [careers page](https://demapp.bot/careers).
 
 ---
 
 ## License
 
-MIT License - see [LICENSE](LICENSE) for details
+[MIT License © 2025 De-MAPP Protocol](./LICENSE)
 
 ---
 
-## Contact
-
-For technical questions and collaboration opportunities, visit our [GitHub repository](https://github.com/Priyank911/de-mapp) or open an issue for specific inquiries.
-
----
-
-<p align="center"><strong>De-MAPP: Persistent Memory for the AI Era</strong></p>
+<div align="center">
+<strong>De-MAPP: Universal Memory for AI Interactions</strong>
+</div>
