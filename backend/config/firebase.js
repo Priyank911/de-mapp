@@ -29,37 +29,6 @@ const mockUsers = [
 
 const mockAvaxVaultData = [];
 
-const admin = require('firebase-admin');
-const path = require('path');
-
-let db = null;
-
-// Mock data for development - simulating your actual Firestore data
-const mockUsers = [
-  {
-    id: 'a139a0a6-7561-47f4-bfef-4f913031e344',
-    email: 'panchalpriyankfullstack@gmail.com',
-    userId: 'user_32f8pkazVTaGHhmKTIQfhSGQM74',
-    profile: {
-      email: 'panchalpriyankfullstack@gmail.com',
-      lastActive: '2025-09-14T04:07:12.119Z',
-      userId: 'a139a0a6-7561-47f4-bfef-4f913031e344'
-    },
-    wallet: {
-      address: '0x99b6e96073E410781f9aA21a28f146b951a1E7D6'
-    },
-    authentication: {
-      message: 'Welcome to De-MAPP Memory Hub! Sign this message to verify your identity. Use panchalpriyankfullstack@gmail.com'
-    },
-    metadata: {
-      createdAt: '2025-09-14T04:07:12.119Z',
-      version: '2.0'
-    }
-  }
-];
-
-const mockAvaxVaultData = [];
-
 try {
   // Initialize Firebase Admin with environment variables instead of JSON file
   const serviceAccount = {
