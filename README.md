@@ -53,7 +53,7 @@ Thanks to [Avalanche's high-performance blockchain infrastructure](https://www.a
 <!-- Transparent pixel to create line break after floating image -->
 <img width="2000" height="0" src="https://github.com/user-attachments/assets/ee14e6f7-20b8-4391-9091-8e8e25561929"><br>
 
-<img align="left" width="370" src="https://github.com/user-attachments/assets/81be79a8-1fdb-4028-9129-5fe055e01e76">
+<img align="left" width="370" src="https://github.com/Priyank911/de-mapp/blob/main/assets/docs/contract.png">
 
 ### Smart Contract
 
@@ -85,7 +85,7 @@ The contract implements gas-optimized storage patterns and comprehensive event e
 <!-- Transparent pixel to create line break after floating image -->
 <img width="2000" height="0" src="https://github.com/user-attachments/assets/ee14e6f7-20b8-4391-9091-8e8e25561929"><br>
 
-<img align="right" width="400" src="https://github.com/user-attachments/assets/c5977833-d9b8-491e-90f9-05f9cd38c588">
+<img align="right" width="400" src="https://github.com/Priyank911/de-mapp/blob/main/assets/docs/memory.png">
 
 ### Memory Vault Management
 
@@ -103,7 +103,7 @@ The system automatically categorizes conversations by topic, sentiment, and impo
 <!-- Transparent pixel to create line break after floating image -->
 <img width="2000" height="0" src="https://github.com/user-attachments/assets/ee14e6f7-20b8-4391-9091-8e8e25561929"><br>
 
-<img align="left" width="370" src="https://github.com/user-attachments/assets/bc2e85ba-dfeb-4fe6-9942-7cfc4703cbe5">
+<img align="left" width="370" src="https://github.com/Priyank911/de-mapp/blob/main/assets/docs/cross-platform.png">
 
 ### Cross-Platform Synchronization
 
@@ -121,7 +121,7 @@ The protocol handles real-time synchronization of conversation states, learned p
 <!-- Transparent pixel to create line break after floating image -->
 <img width="2000" height="0" src="https://github.com/user-attachments/assets/ee14e6f7-20b8-4391-9091-8e8e25561929"><br>
 
-<img align="right" width="350" src="https://github.com/user-attachments/assets/ac0efa14-5c1f-4c26-a42d-9d7c56f5fadd">
+<img align="right" width="350" src="https://github.com/Priyank911/de-mapp/blob/main/assets/docs/configure.png">
 
 ### "Configure memory for..."
 
@@ -138,7 +138,7 @@ Just specify your use case and De-MAPP will automatically configure optimal memo
 <!-- Transparent pixel to create line break after floating image -->
 <img width="2000" height="0" src="https://github.com/user-attachments/assets/ee14e6f7-20b8-4391-9091-8e8e25561929"><br>
 
-<img align="left" width="360" src="https://github.com/user-attachments/assets/7fdf41e6-281a-4b4b-ac19-020b838b6970">
+<img align="left" width="360" src="https://github.com/Priyank911/de-mapp/blob/main/assets/docs/feature.png">
 
 ### Advanced Context Integration
 
@@ -152,7 +152,7 @@ Just specify your use case and De-MAPP will automatically configure optimal memo
 <!-- Transparent pixel to create line break after floating image -->
 <img width="2000" height="0" src="https://github.com/user-attachments/assets/ee14e6f7-20b8-4391-9091-8e8e25561929"><br>
 
-<img align="right" width="350" src="https://github.com/user-attachments/assets/140c8606-d3bf-41b9-9a1f-4dbf0d4c90cb">
+<img align="right" width="350" src="https://github.com/Priyank911/de-mapp/blob/main/assets/docs/memory.png">
 
 ### Memory Snapshots
 
