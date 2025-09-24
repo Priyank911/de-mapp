@@ -18,9 +18,9 @@ export default function NavBar() {
 
         {/* Links */}
         <ul className="links">
-          <li><a href="/">Home</a></li>
-          <li><a href="/about">About Us</a></li>
-          <li><a href="/documentation">Documentation</a></li>
+          <li><Link to="/">Home</Link></li>
+          <li><Link to="/about">About Us</Link></li>
+          <li><Link to="/documentation">Documentation</Link></li>
         </ul>
 
         {/* CTA */}

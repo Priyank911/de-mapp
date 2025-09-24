@@ -113,10 +113,10 @@ const About = () => {
           justifyItems: "center"
         }}>
           {[
-            { name: "Founder 1", role: "AI Engineer", img: "/team1.jpg" },
-            { name: "Founder 2", role: "Full-Stack Developer", img: "/team2.jpg" },
-            { name: "Founder 3", role: "Blockchain Specialist", img: "/team3.jpg" },
-            { name: "Founder 4", role: "Product Designer", img: "/team4.jpg" },
+            { name: "Founder 1", role: "Blockchain Developer", img: "/Priyank.jpg" },
+            { name: "Founder 2", role: "AI Engineer", img: "/Anarv.jpg" },
+            { name: "Founder 3", role: "System Architecture", img: "/Prayers.jpg" },
+            { name: "Founder 4", role: "Frontend Designer", img: "/meet.jpg" },
           ].map((member, idx) => (
             <div key={idx} style={{
               backgroundColor: "#000",
