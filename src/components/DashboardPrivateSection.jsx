@@ -14,7 +14,7 @@ const DashboardPrivateSection = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [_uploadingSession, setUploadingSession] = useState(null);
-  const [transactionStatus, setTransactionStatus] = useState({}); // Track transaction status per session
+  const [_transactionStatus, setTransactionStatus] = useState({}); // Track transaction status per session
   const [showManagePopup, setShowManagePopup] = useState(false);
   const [selectedSession, setSelectedSession] = useState(null);
   const [showFetchCodePopup, setShowFetchCodePopup] = useState(false);
@@ -416,21 +416,11 @@ const DashboardPrivateSection = () => {
               
               <div className="memory-session-grid">
                 {mySessions.map((session, index) => {
-                  const sessionTransactionStatus = transactionStatus[session.id];
-                  const isIncompleteTransaction = !sessionTransactionStatus || 
-                    (sessionTransactionStatus.status !== 'completed' && sessionTransactionStatus.status !== 'confirmed');
-                  
                   return (
                     <div 
                       key={session.id} 
-                      className={`memory-session-card ${session.isNew ? 'new-conversation light-theme' : ''} ${isIncompleteTransaction ? 'incomplete-transaction' : ''}`}
+                      className={`memory-session-card ${session.isNew ? 'new-conversation light-theme' : ''}`}
                     >
-                      {isIncompleteTransaction && (
-                        <div className="ongoing-status-overlay">
-                          <div className="loading-spinner">⟳</div>
-                          Pending AVAX Storage
-                        </div>
-                      )}
                     <div className="memory-session-header">
                       <div className="memory-session-icon-wrapper">
                         <div 
@@ -470,9 +460,41 @@ const DashboardPrivateSection = () => {
                     
                     <div className="memory-session-footer">
                       <div className="memory-session-meta">
-                        <span className={`memory-status-badge ${session.status} ${session.isNew ? 'light-theme' : ''}`}>
-                          {session.status}
-                        </span>
+                        {_transactionStatus[session.id]?.status === 'completed' ? (
+                          <div className="transaction-success-info">
+                            {(() => {
+                              console.log('Transaction status for session:', session.id, _transactionStatus[session.id]);
+                              return null;
+                            })()}
+                            {_transactionStatus[session.id]?.transactionHash ? (
+                              <button 
+                                className="memory-status-badge completed clickable"
+                                title="Click to view transaction on Snowtrace"
+                                onClick={(e) => {
+                                  e.preventDefault();
+                                  e.stopPropagation();
+                                  const txHash = _transactionStatus[session.id].transactionHash;
+                                  const explorerUrl = _transactionStatus[session.id].explorerUrl || `https://testnet.snowtrace.io/tx/${txHash}`;
+                                  console.log('Opening Snowtrace URL:', explorerUrl);
+                                  window.open(explorerUrl, '_blank', 'noopener,noreferrer');
+                                }}
+                              >
+                                Transaction Successful
+                                <svg className="badge-external-icon" viewBox="0 0 20 20" fill="currentColor">
+                                  <path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd" />
+                                </svg>
+                              </button>
+                            ) : (
+                              <span className="memory-status-badge completed">
+                                Transaction Successful
+                              </span>
+                            )}
+                          </div>
+                        ) : (
+                          <span className={`memory-status-badge ${session.status} ${session.isNew ? 'light-theme' : ''}`}>
+                            {session.status}
+                          </span>
+                        )}
                         <span>{session.conversations} conversation{session.conversations !== 1 ? 's' : ''}</span>
                         <span>Last: {session.lastActive}</span>
                       </div>
@@ -483,10 +505,10 @@ const DashboardPrivateSection = () => {
                           cid={session.cid}
                           email={user?.primaryEmailAddress?.emailAddress || session.emails?.[0] || 'unknown@email.com'}
                           uuid={user?.id || `user_${Date.now()}`}
-                          onStatusChange={(status) => {
+                          onStatusChange={(transactionInfo) => {
                             setTransactionStatus(prev => ({
                               ...prev,
-                              [session.id]: status
+                              [session.id]: transactionInfo
                             }));
                           }}
                         />

@@ -362,3 +362,262 @@
   transform: translateX(1px);
 }
 
+/* Clean Button Container */
+.avax-button-container {
+  display: inline-block;
+  width: auto;
+  border: none;
+  background: none;
+  box-shadow: none;
+}
+
+/* Theme-Matching Store to AVAX Button */
+.avax-theme-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  width: auto;
+  padding: 8px 16px;
+  background: var(--bg-tertiary, #f1f5f9);
+  color: var(--text-primary, #1e293b);
+  border: 1px solid var(--border-light, rgba(0, 0, 0, 0.06));
+  border-radius: var(--radius-md, 8px);
+  font-size: 13px;
+  font-weight: 500;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all var(--transition-medium, 0.2s) ease;
+  position: relative;
+  box-shadow: none;
+  min-height: 36px;
+}
+
+.avax-theme-button:hover {
+  background: var(--bg-secondary, #e2e8f0);
+  border-color: var(--border-medium, rgba(0, 0, 0, 0.12));
+  transform: none;
+  box-shadow: none;
+}
+
+.avax-theme-button:active {
+  background: var(--bg-primary, #cbd5e1);
+  transform: none;
+  box-shadow: none;
+}
+
+.avax-theme-button:focus {
+  outline: none;
+  border-color: var(--primary-color, #3b82f6);
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.1);
+}
+
+.avax-theme-button.processing {
+  background: var(--bg-secondary, #e2e8f0);
+  color: var(--text-secondary, #64748b);
+  border-color: var(--border-light, rgba(0, 0, 0, 0.06));
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.avax-theme-button.processing:hover {
+  transform: none;
+  background: var(--bg-secondary, #e2e8f0);
+  border-color: var(--border-light, rgba(0, 0, 0, 0.06));
+  box-shadow: none;
+}
+
+.avax-button-icon {
+  width: 14px;
+  height: 14px;
+  color: currentColor;
+  flex-shrink: 0;
+}
+
+.avax-button-text {
+  font-weight: 600;
+  letter-spacing: 0.025em;
+  white-space: nowrap;
+}
+
+/* Modern Loading Spinner */
+.avax-spinner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 4px;
+}
+
+.avax-spinner-dot {
+  width: 12px;
+  height: 12px;
+  border: 2px solid var(--text-secondary, #94a3b8);
+  border-top: 2px solid transparent;
+  border-radius: 50%;
+  animation: avax-spin 1s linear infinite;
+}
+
+.avax-theme-button.processing .avax-spinner-dot {
+  border-color: var(--text-secondary, #94a3b8);
+  border-top-color: transparent;
+}
+
+@keyframes avax-spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Status Indicators */
+.avax-status-indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  background: var(--bg-secondary, #f1f5f9);
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 500;
+  border: 1px solid var(--border-light, rgba(0, 0, 0, 0.06));
+}
+
+.avax-status-indicator.completed {
+  background: var(--success-bg, #f0fdf4);
+  color: var(--success-color, #166534);
+  border-color: var(--success-border, #bbf7d0);
+}
+
+.avax-status-indicator.processing {
+  background: var(--warning-bg, #fffbeb);
+  color: var(--warning-color, #92400e);
+  border-color: var(--warning-border, #fed7aa);
+}
+
+.avax-status-icon {
+  font-size: 16px;
+  line-height: 1;
+}
+
+/* Success Card */
+.avax-success-card {
+  background: var(--success-bg, #f0fdf4);
+  border: 1px solid var(--success-border, #bbf7d0);
+  border-radius: 12px;
+  padding: 16px;
+  margin-top: 8px;
+}
+
+.avax-success-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.avax-success-icon {
+  width: 32px;
+  height: 32px;
+  background: var(--success-color, #16a34a);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.avax-success-icon svg {
+  width: 16px;
+  height: 16px;
+  color: white;
+}
+
+.avax-success-content {
+  flex: 1;
+}
+
+.avax-success-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--success-color, #166534);
+  margin: 0 0 2px 0;
+}
+
+.avax-success-subtitle {
+  font-size: 12px;
+  color: var(--success-color-light, #15803d);
+  margin: 0;
+  opacity: 0.8;
+}
+
+.avax-live-badge {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: white;
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--success-color, #16a34a);
+  border: 1px solid var(--success-border, #bbf7d0);
+}
+
+.avax-live-dot {
+  width: 6px;
+  height: 6px;
+  background: var(--success-color, #16a34a);
+  border-radius: 50%;
+  animation: pulse-dot 2s ease-in-out infinite;
+}
+
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+/* Error Card */
+.avax-error-card {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--error-bg, #fef2f2);
+  color: var(--error-color, #dc2626);
+  border: 1px solid var(--error-border, #fecaca);
+  border-radius: 8px;
+  padding: 12px;
+  font-size: 13px;
+  margin-top: 8px;
+}
+
+.avax-error-icon {
+  font-size: 16px;
+}
+
+/* Transaction Details */
+.avax-transaction-details {
+  margin-top: 12px;
+}
+
+.avax-explorer-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--primary-color, #3b82f6);
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 500;
+  padding: 6px 12px;
+  border-radius: 8px;
+  background: var(--primary-bg, #eff6ff);
+  border: 1px solid var(--primary-border, #dbeafe);
+  transition: all 0.2s ease;
+}
+
+.avax-explorer-link:hover {
+  background: var(--primary-hover-bg, #dbeafe);
+  color: var(--primary-hover, #2563eb);
+}
+
+.avax-external-icon {
+  width: 14px;
+  height: 14px;
+}
+
