@@ -2071,6 +2071,27 @@ body {
   color: var(--primary-color, #3b82f6);
 }
 
+/* Network Indicator */
+.network-indicator {
+  font-size: 14px;
+  margin-left: 4px;
+  margin-right: -2px;
+  display: inline-flex;
+  align-items: center;
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.1);
+  }
+}
+
 /* Transaction Success Info */
 .transaction-success-info {
   display: flex;
@@ -2079,6 +2100,23 @@ body {
   align-items: flex-start;
   position: relative;
   z-index: 1;
+}
+
+/* Manage Button Container */
+.manage-button-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+}
+
+.manage-requirement-hint {
+  opacity: 0.8;
+  font-size: 0.75rem;
+  color: var(--text-tertiary, #94a3b8);
+  text-align: right;
+  font-style: italic;
+  transition: opacity var(--transition-medium);
 }
 
 .memory-manage-button {
@@ -2098,12 +2136,30 @@ body {
   backdrop-filter: blur(10px);
 }
 
-.memory-session-card:hover .memory-manage-button {
+.memory-manage-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+  color: var(--text-secondary, #64748b);
+  background: var(--glass-bg-disabled, rgba(255, 255, 255, 0.4));
+  border-color: var(--border-light, rgba(0, 0, 0, 0.06));
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+.memory-session-card:hover .memory-manage-button:not(:disabled) {
   background: var(--bg-secondary, #e2e8f0);
   color: var(--text-primary, #1e293b);
   border-color: var(--border-dark, rgba(0, 0, 0, 0.2));
   transform: translateY(-1px);
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+.memory-session-card:hover .memory-manage-button:disabled {
+  background: var(--glass-bg-disabled, rgba(255, 255, 255, 0.4));
+  color: var(--text-secondary, #64748b);
+  border-color: var(--border-light, rgba(0, 0, 0, 0.06));
+  transform: none;
+  box-shadow: none;
 }
 
 /* Enhanced Overview Cards */

@@ -92,7 +92,7 @@ const Dashboard = () => {
   }, [userId, isLoaded, user]);
 
   // Connect wallet function with improved session handling
-  const connectWallet = async () => {
+  const connectWallet = async (wallet = null) => {
     if (!user || !userId) {
       console.error("❌ User not loaded or no user ID");
       showNotification("❌ Please ensure you're logged in before connecting wallet.", "error");
@@ -106,6 +106,29 @@ const Dashboard = () => {
       return;
     }
 
+    // If wallet is provided, it means the connection already happened in WalletSelectionModal
+    if (wallet) {
+      console.log(`✅ Wallet connection completed for ${wallet.name}`);
+      
+      // Get the connected wallet info from walletService
+      const connectedWallet = walletService.getConnectedWallet();
+      
+      if (connectedWallet) {
+        setWalletStatus({
+          isConnected: true,
+          isConnecting: false,
+          address: connectedWallet.address,
+          walletType: connectedWallet.type,
+          error: null
+        });
+        
+        console.log(`🎉 ${wallet.name} connected successfully!`);
+        showNotification(`🎉 ${wallet.name} connected successfully! Welcome to De-MAPP Memory Hub.`, "success");
+        return;
+      }
+    }
+
+    // Fallback to old method only if no wallet specified (shouldn't happen normally)
     setWalletStatus(prev => ({
       ...prev,
       isConnecting: true,
@@ -115,7 +138,7 @@ const Dashboard = () => {
     try {
       const userEmail = user.primaryEmailAddress?.emailAddress || user.username || "Unknown User";
       
-      console.log("🚀 Initiating wallet connection for:", userEmail);
+      console.log("🚀 Fallback wallet connection for:", userEmail);
       console.log("👤 User session stable:", { isLoaded, userId: userId.slice(0, 8) + "..." });
       
       // Show connecting notification

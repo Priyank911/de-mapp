@@ -10,8 +10,9 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@avalabs/core-wallets-sdk": "^3.0.0",
+    "@avalabs/core-wallets-sdk": "^3.0.2",
     "@clerk/clerk-react": "^5.47.0",
+    "@metamask/sdk": "^0.33.1",
     "ethers": "^6.15.0",
     "firebase": "^12.2.1",
     "lucide-react": "^0.544.0",

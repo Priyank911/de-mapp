@@ -1,60 +1,107 @@
 // src/components/DashboardHeader.jsx
-import React from "react";
+import React, { useState } from "react";
 import { Search, Wallet, User } from "lucide-react";
 import { UserButton, useUser } from "@clerk/clerk-react";
+import WalletSelectionModal from "./WalletSelectionModal";
+import "./WalletSelectionModal.css";
 
 const DashboardHeader = ({ walletStatus, onConnectWallet }) => {
   const { user, isLoaded } = useUser();
+  const [showWalletModal, setShowWalletModal] = useState(false);
+  const [isConnecting, setIsConnecting] = useState(false);
+  const [connectionError, setConnectionError] = useState("");
 
   const handleWalletButtonClick = () => {
     if (walletStatus?.isConnected) {
       // Already connected - could show wallet details or disconnect option
       console.log("Wallet already connected:", walletStatus.address);
     } else {
-      // Trigger wallet connection
-      onConnectWallet && onConnectWallet();
+      // Reset error and show wallet selection modal
+      setConnectionError("");
+      setShowWalletModal(true);
+    }
+  };
+
+  const handleWalletSelect = async (wallet) => {
+    setIsConnecting(true);
+    setConnectionError("");
+    
+    try {
+      console.log(`🔗 Connecting to ${wallet.name}...`);
+      
+      // The actual wallet connection is handled inside WalletSelectionModal
+      // This function is just called when the connection succeeds
+      
+      // Call the original connect wallet function if provided
+      if (onConnectWallet) {
+        await onConnectWallet(wallet);
+      }
+      
+      // Success - close modal
+      setShowWalletModal(false);
+      console.log(`✅ Successfully connected to ${wallet.name}`);
+    } catch (error) {
+      console.error("❌ Wallet connection failed:", error);
+      setConnectionError(`Failed to connect ${wallet.name}. Please try again.`);
+    } finally {
+      setIsConnecting(false);
+    }
+  };
+
+  const handleCloseModal = () => {
+    if (!isConnecting) {
+      setShowWalletModal(false);
+      setConnectionError("");
     }
   };
 
   const getWalletButtonText = () => {
-    if (walletStatus?.isConnecting) {
+    if (walletStatus?.isConnecting || isConnecting) {
       return "Connecting...";
     }
     if (walletStatus?.isConnected) {
       return `Connected (${walletStatus.address?.slice(0, 6)}...${walletStatus.address?.slice(-4)})`;
     }
-    return "Connect Avalanche";
+    return "Connect Wallet";
   };
 
   const getWalletButtonStyle = () => {
     const baseStyle = {
       padding: "0.625rem 1.25rem",
-      borderRadius: "9999px",
+      borderRadius: "8px",
       border: "none",
       fontSize: "0.875rem",
-      fontWeight: "600",
-      cursor: walletStatus?.isConnecting ? "not-allowed" : "pointer",
-      transition: "all 0.2s",
+      fontWeight: "500",
+      cursor: (walletStatus?.isConnecting || isConnecting) ? "not-allowed" : "pointer",
+      transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
       display: "flex",
       alignItems: "center",
       gap: "0.5rem",
-      opacity: walletStatus?.isConnecting ? 0.7 : 1
+      position: "relative",
+      overflow: "hidden",
+      transform: "translateY(0)",
+      opacity: (walletStatus?.isConnecting || isConnecting) ? 0.7 : 1,
+      fontFamily: "inherit"
     };
 
     if (walletStatus?.isConnected) {
+      // Connected state - matches the lime theme
       return {
         ...baseStyle,
-        background: "linear-gradient(135deg, #22c55e, #16a34a)",
-        color: "#ffffff",
-        boxShadow: "0 4px 12px rgba(34, 197, 94, 0.3)"
+        background: "var(--lime, #d7f25a)", // Lime green theme color
+        color: "var(--black, #000000)",
+        boxShadow: "0 2px 8px rgba(215, 242, 90, 0.3), 0 1px 3px rgba(0, 0, 0, 0.1)",
+        border: "1px solid rgba(215, 242, 90, 0.5)"
       };
     }
 
+    // Not connected state - subtle theme-matching design
     return {
       ...baseStyle,
-      background: "var(--lime)",
-      color: "var(--black)",
-      boxShadow: "var(--shadow-lime)"
+      background: "var(--bg-card, #ffffff)",
+      color: "var(--text-primary, #000000)",
+      boxShadow: "0 2px 8px rgba(0, 0, 0, 0.08), 0 1px 3px rgba(0, 0, 0, 0.05)",
+      border: "1px solid var(--border-medium, #e5e7eb)"
     };
   };
 
@@ -122,41 +169,66 @@ const DashboardHeader = ({ walletStatus, onConnectWallet }) => {
             <button 
               style={getWalletButtonStyle()}
               onClick={handleWalletButtonClick}
-              disabled={walletStatus?.isConnecting}
+              disabled={walletStatus?.isConnecting || isConnecting}
               onMouseOver={(e) => {
-                if (!walletStatus?.isConnecting) {
+                if (!walletStatus?.isConnecting && !isConnecting) {
                   if (walletStatus?.isConnected) {
-                    e.target.style.background = "linear-gradient(135deg, #16a34a, #15803d)";
+                    // Connected hover - enhanced lime glow
+                    e.target.style.boxShadow = "0 4px 16px rgba(215, 242, 90, 0.4), 0 2px 8px rgba(0, 0, 0, 0.1)";
+                    e.target.style.transform = "translateY(-1px)";
+                    e.target.style.borderColor = "rgba(215, 242, 90, 0.8)";
                   } else {
-                    e.target.style.background = "var(--lime-dark)";
+                    // Not connected hover - subtle lift
+                    e.target.style.boxShadow = "0 4px 12px rgba(0, 0, 0, 0.12), 0 2px 6px rgba(0, 0, 0, 0.08)";
+                    e.target.style.transform = "translateY(-1px)";
+                    e.target.style.borderColor = "var(--lime, #d7f25a)";
                   }
-                  e.target.style.transform = "translateY(-1px)";
                 }
               }}
               onMouseOut={(e) => {
-                if (!walletStatus?.isConnecting) {
+                if (!walletStatus?.isConnecting && !isConnecting) {
                   if (walletStatus?.isConnected) {
-                    e.target.style.background = "linear-gradient(135deg, #22c55e, #16a34a)";
+                    // Connected normal - lime theme
+                    e.target.style.boxShadow = "0 2px 8px rgba(215, 242, 90, 0.3), 0 1px 3px rgba(0, 0, 0, 0.1)";
+                    e.target.style.transform = "translateY(0)";
+                    e.target.style.borderColor = "rgba(215, 242, 90, 0.5)";
                   } else {
-                    e.target.style.background = "var(--lime)";
+                    // Not connected normal - subtle
+                    e.target.style.boxShadow = "0 2px 8px rgba(0, 0, 0, 0.08), 0 1px 3px rgba(0, 0, 0, 0.05)";
+                    e.target.style.transform = "translateY(0)";
+                    e.target.style.borderColor = "var(--border-medium, #e5e7eb)";
                   }
-                  e.target.style.transform = "translateY(0)";
                 }
               }}
             >
               <Wallet style={{ 
                 width: "1rem", 
                 height: "1rem",
-                animation: walletStatus?.isConnecting ? "spin 1s linear infinite" : "none"
+                opacity: (walletStatus?.isConnecting || isConnecting) ? 0.6 : 1,
+                animation: (walletStatus?.isConnecting || isConnecting) ? "spin 2s linear infinite" : "none",
+                transition: "opacity 0.3s ease"
               }} />
-              <span>{getWalletButtonText()}</span>
+              <span 
+                className="wallet-button-text"
+                style={{
+                  background: "none",
+                  backgroundColor: "transparent",
+                  color: "inherit",
+                  border: "none",
+                  padding: "0",
+                  margin: "0"
+                }}
+              >
+                {getWalletButtonText()}
+              </span>
               {walletStatus?.isConnected && (
                 <div style={{
-                  width: "8px",
-                  height: "8px",
+                  width: "6px",
+                  height: "6px",
                   borderRadius: "50%",
-                  background: "#10b981",
-                  boxShadow: "0 0 6px rgba(16, 185, 129, 0.6)"
+                  background: "var(--black, #000000)",
+                  opacity: 0.7,
+                  animation: "pulse 3s ease-in-out infinite"
                 }} />
               )}
             </button>
@@ -236,6 +308,15 @@ const DashboardHeader = ({ walletStatus, onConnectWallet }) => {
           </div>
         </div>
       </div>
+
+      {/* Wallet Selection Modal */}
+      <WalletSelectionModal
+        isOpen={showWalletModal}
+        onClose={handleCloseModal}
+        onWalletSelect={handleWalletSelect}
+        isConnecting={isConnecting}
+        user={user}
+      />
     </header>
   );
 };

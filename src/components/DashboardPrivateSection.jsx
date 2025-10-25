@@ -469,17 +469,74 @@ const DashboardPrivateSection = () => {
                             {_transactionStatus[session.id]?.transactionHash ? (
                               <button 
                                 className="memory-status-badge completed clickable"
-                                title="Click to view transaction on Snowtrace"
-                                onClick={(e) => {
+                                title={`Click to view on ${_transactionStatus[session.id]?.network || 'blockchain explorer'}`}
+                                onClick={async (e) => {
                                   e.preventDefault();
                                   e.stopPropagation();
-                                  const txHash = _transactionStatus[session.id].transactionHash;
-                                  const explorerUrl = _transactionStatus[session.id].explorerUrl || `https://testnet.snowtrace.io/tx/${txHash}`;
-                                  console.log('Opening Snowtrace URL:', explorerUrl);
-                                  window.open(explorerUrl, '_blank', 'noopener,noreferrer');
+                                  
+                                  const transaction = _transactionStatus[session.id];
+                                  const txHash = transaction.transactionHash;
+                                  const cid = session.cid;
+                                  
+                                  console.log('🔍 Checking CID in Firebase collections:', cid);
+                                  
+                                  try {
+                                    // Import Firebase services
+                                    const { collection, query, where, getDocs } = await import('firebase/firestore');
+                                    const { db } = await import('../firebase');
+                                    
+                                    // Check Push Chain collection first
+                                    const pushChainQuery = query(
+                                      collection(db, 'pushChainTransactions'),
+                                      where('cid', '==', cid)
+                                    );
+                                    const pushChainSnapshot = await getDocs(pushChainQuery);
+                                    
+                                    let explorerUrl;
+                                    
+                                    if (!pushChainSnapshot.empty) {
+                                      // CID found in Push Chain collection
+                                      explorerUrl = `https://donut.push.network/tx/${txHash}`;
+                                      console.log('✅ CID found in Push Chain collection');
+                                      console.log('� Opening Push Chain Explorer:', explorerUrl);
+                                    } else {
+                                      // Check AVAX collection
+                                      const avaxQuery = query(
+                                        collection(db, 'avaxTransactions'),
+                                        where('cid', '==', cid)
+                                      );
+                                      const avaxSnapshot = await getDocs(avaxQuery);
+                                      
+                                      if (!avaxSnapshot.empty) {
+                                        // CID found in AVAX collection
+                                        explorerUrl = `https://testnet.snowtrace.io/tx/${txHash}`;
+                                        console.log('✅ CID found in AVAX collection');
+                                        console.log('� Opening Avalanche Explorer:', explorerUrl);
+                                      } else {
+                                        // Fallback to stored explorerUrl or default
+                                        explorerUrl = transaction.explorerUrl || `https://testnet.snowtrace.io/tx/${txHash}`;
+                                        console.log('⚠️ CID not found in collections, using default');
+                                        console.log('🔗 Opening Explorer:', explorerUrl);
+                                      }
+                                    }
+                                    
+                                    window.open(explorerUrl, '_blank', 'noopener,noreferrer');
+                                    
+                                  } catch (error) {
+                                    console.error('❌ Error checking Firebase:', error);
+                                    // Fallback to default explorer
+                                    const fallbackUrl = `https://testnet.snowtrace.io/tx/${txHash}`;
+                                    console.log('🔗 Using fallback explorer:', fallbackUrl);
+                                    window.open(fallbackUrl, '_blank', 'noopener,noreferrer');
+                                  }
                                 }}
                               >
                                 Transaction Successful
+                                {_transactionStatus[session.id]?.network && (
+                                  <span className="network-indicator">
+                                    {_transactionStatus[session.id].network.includes('Push Chain') ? '🟣' : '🔴'}
+                                  </span>
+                                )}
                                 <svg className="badge-external-icon" viewBox="0 0 20 20" fill="currentColor">
                                   <path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd" />
                                 </svg>
@@ -514,17 +571,37 @@ const DashboardPrivateSection = () => {
                         />
                       </div>
                       
-                      {/* Management button - simplified since TransactionStatusIndicator handles AVAX storage */}
-                      <button 
-                        className="memory-manage-button"
-                        onClick={() => {
-                          setSelectedSession(session);
-                          setShowManagePopup(true);
-                        }}
-                      >
-                        <span className="text-sm">Manage</span>
-                        <ArrowUpRight className="w-4 h-4" />
-                      </button>
+                      {/* Management button with transaction requirement indicator */}
+                      <div className="manage-button-container">
+                        <button 
+                          className="memory-manage-button"
+                          disabled={!_transactionStatus[session.id] || _transactionStatus[session.id]?.status !== 'completed'}
+                          onClick={() => {
+                            setSelectedSession(session);
+                            setShowManagePopup(true);
+                          }}
+                          title={
+                            !_transactionStatus[session.id] 
+                              ? "Store session to AVAX blockchain first to enable management"
+                              : _transactionStatus[session.id]?.status !== 'completed'
+                              ? "Transaction pending - management will be enabled once completed"
+                              : "Manage this session"
+                          }
+                        >
+                          <span className="text-sm">Manage</span>
+                          <ArrowUpRight className="w-4 h-4" />
+                        </button>
+                        {(!_transactionStatus[session.id] || _transactionStatus[session.id]?.status !== 'completed') && (
+                          <div className="manage-requirement-hint">
+                            <span className="text-xs text-gray-500">
+                              {!_transactionStatus[session.id] 
+                                ? "Requires blockchain storage"
+                                : "Transaction in progress..."
+                              }
+                            </span>
+                          </div>
+                        )}
+                      </div>
                     </div>
                   </div>
                   );
