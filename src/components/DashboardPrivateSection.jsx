@@ -272,12 +272,12 @@ const DashboardPrivateSection = () => {
                 }
               </p>
             </div>
-            <div className="flex space-x-3" style={{ marginTop: '16px' }}>
+            {/* <div className="flex space-x-3" style={{ marginTop: '16px' }}>
               <button className="primary-button">
                 <Plus className="w-5 h-5" />
                 <span>Deploy Memory</span>
               </button>
-            </div>
+            </div> */}
           </div>
         </div>
 

@@ -1,8 +1,9 @@
 // src/components/DashboardPublicSection.jsx
 import React from "react";
-import { ArrowUpRight, Brain, Database, Users, Clock } from "lucide-react";
+import { ArrowUpRight, Brain, Database, Users, Clock, Wrench, Settings } from "lucide-react";
 
 const DashboardPublicSection = () => {
+  /* 
   // Sample trending memory vaults for De-MAPP
   const trendingVaults = [
     {
@@ -46,6 +47,7 @@ const DashboardPublicSection = () => {
       featured: true
     }
   ];
+  */
 
   return (
     <div className="dashboard-section">
@@ -61,25 +63,43 @@ const DashboardPublicSection = () => {
                 Community-shared memory sessions and knowledge bases
               </p>
             </div>
-            <button 
-              className="primary-button"
-              style={{ marginTop: '16px' }}
-            >
-              <span>Explore all vaults</span>
-              <ArrowUpRight className="w-4 h-4" />
-            </button>
           </div>
         </div>
 
-        {/* Featured Grid */}
+        {/* Under Maintenance Section */}
+        <div className="maintenance-container">
+          <div className="maintenance-card">
+            <div className="maintenance-icon-wrapper">
+              <img 
+                src="/maintenance.png" 
+                alt="Under Maintenance" 
+                className="maintenance-image"
+              />
+            </div>
+            
+            <div className="maintenance-content">
+              <h2 className="maintenance-title">Under Maintenance</h2>
+              <p className="maintenance-description">
+                We're enhancing the public knowledge vault experience with exciting new features.
+              </p>
+              
+              <div className="maintenance-status">
+                <div className="maintenance-status-bar">
+                  <div className="maintenance-status-progress"></div>
+                </div>
+                <p className="maintenance-status-text">Coming Soon</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* 
         <div className="vault-showcase-grid">
           {trendingVaults.map((vault, index) => (
             <div key={vault.id} className="vault-showcase-card">
-              {/* Image/Gradient Area */}
               <div 
                 className={`vault-showcase-image ${index === 0 || index === 2 ? 'lime' : ''}`}
               >
-                {/* Content overlay */}
                 {vault.id === "coding_001" && (
                   <div className="text-center">
                     <div className="w-16 h-16 bg-black/20 backdrop-blur-sm rounded-2xl mx-auto mb-4 flex items-center justify-center">
@@ -92,7 +112,6 @@ const DashboardPublicSection = () => {
                 )}
               </div>
               
-              {/* Card Info */}
               <div className="vault-showcase-info">
                 <div className="vault-creator">
                   {vault.creator}
@@ -122,6 +141,7 @@ const DashboardPublicSection = () => {
             </div>
           ))}
         </div>
+        */}
       </div>
     </div>
   );

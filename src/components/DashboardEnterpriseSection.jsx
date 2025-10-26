@@ -1,8 +1,9 @@
 // src/components/DashboardEnterpriseSection.jsx
 import React from "react";
-import { Plus, Brain, Database, Users, ArrowUpRight } from "lucide-react";
+import { Plus, Brain, Database, Users, ArrowUpRight, Shield, Lock, Zap, Settings } from "lucide-react";
 
 const DashboardEnterpriseSection = () => {
+  /*
   const companyMetrics = {
     totalSessions: "47",
     sharedMemory: "+2.8 TB",
@@ -72,6 +73,7 @@ const DashboardEnterpriseSection = () => {
       access: "Executive"
     }
   ];
+  */
 
   return (
     <div className="dashboard-section">
@@ -83,16 +85,37 @@ const DashboardEnterpriseSection = () => {
               <h1 className="section-page-title">Enterprise Memory Hub</h1>
               <p className="section-page-description">Team collaboration and shared knowledge management</p>
             </div>
-            <div className="flex space-x-3" style={{ marginTop: '16px' }}>
-              <button className="primary-button">
-                <Plus className="w-5 h-5" />
-                <span>Deploy Team Session</span>
-              </button>
+          </div>
+        </div>
+
+        {/* Under Maintenance Section */}
+        <div className="maintenance-container">
+          <div className="maintenance-card enterprise">
+            <div className="maintenance-icon-wrapper">
+              <img 
+                src="/maintenance.png" 
+                alt="Under Maintenance" 
+                className="maintenance-image"
+              />
+            </div>
+            
+            <div className="maintenance-content">
+              <h2 className="maintenance-title">Under Maintenance</h2>
+              <p className="maintenance-description">
+                Building enterprise-grade memory infrastructure for your organization.
+              </p>
+              
+              <div className="maintenance-status">
+                <div className="maintenance-status-bar enterprise">
+                  <div className="maintenance-status-progress enterprise"></div>
+                </div>
+                <p className="maintenance-status-text">Coming Soon</p>
+              </div>
             </div>
           </div>
         </div>
 
-        {/* Corporate Memory Metrics */}
+        {/*
         <div className="overview-grid">
           <div className="overview-card featured">
             <div className="overview-card-header">
@@ -143,9 +166,7 @@ const DashboardEnterpriseSection = () => {
         </div>
 
         <div className="grid grid-cols-1 gap-8">
-          {/* Main Content */}
           <div className="space-y-8">
-            {/* Team Memory Sessions */}
             <div style={{ marginTop: '2rem', marginBottom: '2rem' }}>
               <div className="flex items-center justify-between mb-6" style={{ marginBottom: '2rem' }}>
                 <h2 className="section-heading">Team Memory Networks</h2>
@@ -198,7 +219,6 @@ const DashboardEnterpriseSection = () => {
               </div>
             </div>
 
-            {/* Corporate Vaults */}
             <div style={{ marginTop: '2rem', marginBottom: '2rem' }}>
               <div className="flex items-center justify-between" style={{ marginBottom: '2rem' }}>
                 <h2 className="section-heading">Shared Knowledge Vaults</h2>
@@ -263,6 +283,7 @@ const DashboardEnterpriseSection = () => {
             </div>
           </div>
         </div>
+        */}
       </div>
     </div>
   );

@@ -57,9 +57,9 @@ Thanks to [Avalanche's high-performance blockchain infrastructure](https://www.a
 
 ### Smart Contract
 
-De-MAPP's core functionality is powered by a verified smart contract deployed on Avalanche Fuji testnet, ensuring transparent and immutable memory operations with minimal gas costs.
+De-MAPP's core functionality is powered by verified smart contracts deployed on multiple blockchain networks, ensuring transparent and immutable memory operations with minimal gas costs across different ecosystems.
 
-**Contract Details:**
+**Primary Contract (Avalanche Fuji):**
 
 <div align="center">
 
@@ -73,6 +73,21 @@ De-MAPP's core functionality is powered by a verified smart contract deployed on
 
 </div>
 
+**Secondary Contract (Push Chain Donut):**
+
+<div align="center">
+
+| Property | Value |
+|----------|-------|
+| **Contract Address** | [`0xf95F7A45DEdd071C53A75F1589cBA79C1dE0dF2e`](https://donut.push.network/address/0xf95F7A45DEdd071C53A75F1589cBA79C1dE0dF2e) |
+| **Network** | Push Chain Donut Testnet |
+| **Chain ID** | 42101 |
+| **RPC URL** | https://evm.rpc-testnet-donut-node2.push.org/ |
+| **Storage Price** | 0.01 PC per transaction |
+| **Verification Status** | Deployed & Active |
+
+</div>
+
 **Core Functions:**
 - `storeCID(string memory cid)`: Store content identifiers with automatic duplicate prevention
 - `getCIDsByUser(address user)`: Retrieve all memory fragments for authenticated users
@@ -80,7 +95,7 @@ De-MAPP's core functionality is powered by a verified smart contract deployed on
 - `getCIDCount()`: Global network statistics and usage metrics
 - `getUser(string memory cid)`: Ownership verification for access control
 
-The contract implements gas-optimized storage patterns and comprehensive event emission for complete operation transparency.
+The contracts implement gas-optimized storage patterns and comprehensive event emission for complete operation transparency. Multi-chain deployment ensures redundancy and allows users to choose their preferred blockchain for memory storage.
 
 <!-- Transparent pixel to create line break after floating image -->
 <img width="2000" height="0" src="https://github.com/user-attachments/assets/ee14e6f7-20b8-4391-9091-8e8e25561929"><br>
@@ -271,10 +286,10 @@ sequenceDiagram
 | **Styling** | Tailwind CSS | Utility-first responsive design system |
 | **Authentication** | Clerk + OAuth 2.0 | Secure user management with Web3 integration |
 | **Database** | Firebase Firestore | Real-time data synchronization |
-| **Blockchain** | Avalanche Fuji Testnet | Smart contract deployment and execution |
+| **Blockchain** | Avalanche Fuji + Push Chain Donut | Multi-chain smart contract deployment |
 | **Storage** | IPFS + Arweave | Distributed and permanent data storage |
 | **Encryption** | Lit Protocol | Decentralized key management |
-| **Identity** | Web3 Wallets | User-controlled cryptographic authentication |
+| **Identity** | Web3 Wallets (MetaMask) | User-controlled cryptographic authentication |
 
 </div>
 
@@ -339,7 +354,9 @@ npm run dev
 ```javascript
 // Environment variables
 VITE_AVALANCHE_RPC_URL=https://api.avax-test.network/ext/bc/C/rpc
+VITE_PUSH_CHAIN_RPC_URL=https://evm.rpc-testnet-donut-node2.push.org/
 VITE_CONTRACT_ADDRESS=0x324F02AFD4ab534454d841E6dD83431518CcFABB
+VITE_PUSH_CHAIN_CONTRACT=0xf95f7a45dedd071c53a75f1589cba79c1de0df2e
 VITE_IPFS_GATEWAY=https://gateway.pinata.cloud
 VITE_CLERK_PUBLISHABLE_KEY=your_clerk_key
 VITE_FIREBASE_PROJECT_ID=your_project_id
