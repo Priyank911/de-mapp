@@ -84,7 +84,7 @@ const Home = () => {
         </ul>
 
         <figure className="tech-figure">
-          <img src="/blog1.jpg" alt="Product showcase" />
+          <img src="/product_showcase.png" alt="Product showcase" />
         </figure>
       </section>
 
