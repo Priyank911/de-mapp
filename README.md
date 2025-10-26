@@ -32,7 +32,7 @@
 
 Meet De-MAPP, a decentralized protocol that enables **persistent memory across AI agents**.
 
-Thanks to [Avalanche's high-performance blockchain infrastructure](https://www.avax.network/) and advanced cryptographic security, De-MAPP solves the fundamental problem of memory fragmentation in AI interactions. With distributed storage that maintains conversation context, cross-platform synchronization capabilities, and privacy-preserving encryption, De-MAPP creates a universal memory layer that any AI system can utilize. While traditional AI services operate in isolated environments where each conversation starts fresh, this protocol provides a persistent foundation where your interactions, preferences, and context follow you across every AI platform.
+Leveraging multi-chain blockchain infrastructure and advanced cryptographic security, De-MAPP solves the fundamental problem of memory fragmentation in AI interactions. With distributed storage that maintains conversation context, cross-platform synchronization capabilities, and privacy-preserving encryption, De-MAPP creates a universal memory layer that any AI system can utilize. While traditional AI services operate in isolated environments where each conversation starts fresh, this protocol provides a persistent foundation where your interactions, preferences, and context follow you across every AI platform.
 
 1. **Connect your AI services** and establish persistent memory vaults secured by your Web3 wallet.
 2. **De-MAPP analyzes** your interaction patterns and conversation history to optimize memory allocation across distributed networks.
